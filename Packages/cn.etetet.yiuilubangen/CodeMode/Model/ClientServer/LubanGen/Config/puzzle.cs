@@ -18,7 +18,8 @@ namespace ET
         public puzzle(ByteBuf _buf) 
         {
             Id = _buf.ReadInt();
-            Trans = global::ET.gameplay.vec3.Deserializevec3(_buf);
+            Tray = _buf.ReadInt();
+            SlotIndex = _buf.ReadInt();
 
             EndInit();
         }
@@ -33,16 +34,19 @@ namespace ET
         /// </summary>
         public readonly int Id;
         /// <summary>
-        /// 坐标
+        /// 所在托盘 0=左 1=右
         /// </summary>
-        public readonly gameplay.vec3 Trans;
+        public readonly int Tray;
+        /// <summary>
+        /// 托盘内槽位序号 0=最上
+        /// </summary>
+        public readonly int SlotIndex;
     
         public const int __ID__ = -976695234;
         public override int GetTypeId() => __ID__;
 
         public  void ResolveRef()
         {
-            Trans?.ResolveRef();
             EndRef();
         }
 
@@ -50,7 +54,8 @@ namespace ET
         {
             return "{ "
             + "Id:" + Id + ","
-            + "Trans:" + Trans + ","
+            + "Tray:" + Tray + ","
+            + "SlotIndex:" + SlotIndex + ","
             + "}";
         }
 

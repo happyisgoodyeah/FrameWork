@@ -22,8 +22,7 @@ namespace ET.Client
                 return currentScene;
             }
 
-            await EnterMapHelper.EnterMapAsync(root);
-            return root.CurrentScene();
+            return await LocalSceneHelper.ChangeSceneAsync(root, PuzzleSceneName);
         }
 
         /// <summary>

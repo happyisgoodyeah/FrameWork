@@ -12,19 +12,19 @@ namespace ET.Client
         public int PuzzleConfigId { get; set; }
 
         /// <summary>
-        /// 当前拼图初始生成时的世界坐标 X 分量。
+        /// 当前拼图待放置时所在的托盘编号，取值见 PuzzleLayoutConst.TrayLeft / TrayRight。
         /// </summary>
-        public float InitialWorldPositionX { get; set; }
+        public int Tray { get; set; }
 
         /// <summary>
-        /// 当前拼图初始生成时的世界坐标 Y 分量。
+        /// 当前拼图在所属托盘内的槽位序号，0 为最上方。
         /// </summary>
-        public float InitialWorldPositionY { get; set; }
+        public int TraySlotIndex { get; set; }
 
         /// <summary>
-        /// 当前拼图初始生成时的世界坐标 Z 分量。
+        /// 所属托盘内的槽位总数，用于把整列槽位垂直居中。
         /// </summary>
-        public float InitialWorldPositionZ { get; set; }
+        public int TraySlotCount { get; set; }
 
         /// <summary>
         /// 当前拼图采用的离散旋转状态。

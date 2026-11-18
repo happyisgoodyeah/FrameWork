@@ -21,6 +21,7 @@ namespace ET.Client
         {
             self.SceneRoot = null;
             self.GridRoot = null;
+            self.GameCamera = null;
             self.IsInitialized = false;
         }
 
@@ -32,7 +33,52 @@ namespace ET.Client
         {
             self.SceneRoot = null;
             self.GridRoot = null;
+            self.GameCamera = null;
             self.IsInitialized = false;
+        }
+
+        /// <summary>
+        /// 按当前屏幕比例拟合相机，保证内容范围在任意比例下都不被裁切。
+        /// 朝向已锁定横屏，运行期屏幕尺寸不会变化，因此只在生成关卡时调用一次。
+        /// </summary>
+        public static void FitGameCamera(this PuzzleSceneRoot self)
+        {
+            if (!self.TryGetGameCamera(out Camera gameCamera) || !gameCamera.orthographic)
+            {
+                return;
+            }
+
+            float aspect = gameCamera.aspect;
+            if (aspect <= 0f)
+            {
+                return;
+            }
+
+            // orthographicSize 即可见半高，可见半宽为 orthographicSize * aspect
+            // 两个方向都取满足条件的下限，再取较大者，等价于 contain 语义
+            float sizeByHeight = PuzzleLayoutConst.RequiredHalfHeight;
+            float sizeByWidth = PuzzleLayoutConst.RequiredHalfWidth / aspect;
+            gameCamera.orthographicSize = Mathf.Max(sizeByHeight, sizeByWidth);
+        }
+
+        /// <summary>
+        /// 获取当前用于渲染玩法内容的相机，缓存失效时重新解析
+        /// </summary>
+        /// <param name="self">PuzzleSceneRoot 自身</param>
+        /// <param name="gameCamera">返回找到的相机</param>
+        /// <returns>是否成功找到可用相机</returns>
+        private static bool TryGetGameCamera(this PuzzleSceneRoot self, out Camera gameCamera)
+        {
+            gameCamera = self.GameCamera;
+            if (gameCamera != null && gameCamera.isActiveAndEnabled)
+            {
+                return true;
+            }
+
+            // 玩法相机由 Init 场景的 MainCamera 通过 DontDestroyOnLoad 跨场景保留
+            gameCamera = Camera.main;
+            self.GameCamera = gameCamera;
+            return gameCamera != null;
         }
 
         /// <summary>
@@ -106,6 +152,9 @@ namespace ET.Client
             puzzleSceneRoot.SceneRoot = sceneRoot;
             puzzleSceneRoot.GridRoot = gridRoot;
             puzzleSceneRoot.IsInitialized = true;
+
+            // 生成时拟合一次，朝向锁定横屏后运行期不再变化
+            puzzleSceneRoot.FitGameCamera();
             return puzzleSceneRoot;
         }
 

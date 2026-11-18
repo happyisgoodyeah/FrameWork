@@ -6,11 +6,6 @@ namespace ET.Client
     public static class PuzzleViewConst
     {
         /// <summary>
-        /// Grid 每个 Slot 在场景中的间距。
-        /// </summary>
-        public const float GridCellSize = 3f;
-
-        /// <summary>
         /// 拖拽中拼图主图临时抬高到的排序值。
         /// </summary>
         public const int DraggingSortingOrder = 100;

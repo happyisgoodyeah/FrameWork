@@ -70,7 +70,7 @@ namespace ET.Client
             Vector3 worldPosition = self.ScreenToWorldPosition(mainCamera, screenPosition);
             InputHitResult[] hitResults = BuildHitResults(worldPosition, self.PhysicsLayerMask);
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !IsPointerOverUI())
             {
                 self.BeginPress(screenPosition, worldPosition, hitResults);
                 PointerInputContext pointerContext = self.CreatePointerContext(screenPosition, worldPosition, hitResults);
@@ -108,6 +108,45 @@ namespace ET.Client
                 EventSystem.Instance.Publish(self.Scene(), new PointerUp() { Context = pointerContext });
                 self.ClearPress();
             }
+        }
+
+        /// <summary>
+        /// 检测当前指针是否命中可拦截世界输入的 UGUI 元素，忽略仅用于阻挡 UI 穿透的 UIBlock
+        /// </summary>
+        /// <returns>指针是否被真实 UI 遮挡</returns>
+        private static bool IsPointerOverUI()
+        {
+            // 该文件中裸写的 EventSystem 是 ET 事件总线，这里必须用全限定名访问 UGUI 的事件系统
+            UnityEngine.EventSystems.EventSystem uiEventSystem = UnityEngine.EventSystems.EventSystem.current;
+            if (uiEventSystem == null)
+            {
+                return false;
+            }
+
+            UnityEngine.EventSystems.PointerEventData pointerEventData = new(uiEventSystem)
+            {
+                position = Input.mousePosition
+            };
+
+            using var raycastResults = ListComponent<UnityEngine.EventSystems.RaycastResult>.Create();
+            uiEventSystem.RaycastAll(pointerEventData, raycastResults);
+            foreach (UnityEngine.EventSystems.RaycastResult raycastResult in raycastResults)
+            {
+                if (raycastResult.gameObject == null)
+                {
+                    continue;
+                }
+
+                // UIBlock 只负责阻挡 UI 之间的穿透，不应该阻挡世界输入
+                if (raycastResult.gameObject.GetComponent<YIUIFramework.UIBlock>() != null)
+                {
+                    continue;
+                }
+
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>

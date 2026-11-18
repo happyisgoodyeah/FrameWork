@@ -31,7 +31,7 @@ namespace ET.Client
                 return;
             }
 
-            grid.AddComponent<GridView, UnityEngine.GameObject, UnityEngine.Vector3, float>(prefab, UnityEngine.Vector3.zero, PuzzleViewConst.GridCellSize);
+            grid.AddComponent<GridView, UnityEngine.GameObject, UnityEngine.Vector3, float>(prefab, UnityEngine.Vector3.zero, PuzzleLayoutConst.GridCellSize);
         }
     }
 }

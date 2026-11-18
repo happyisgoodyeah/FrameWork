@@ -76,11 +76,20 @@ namespace ET.Client
         /// <param name="gridConfig">当前关卡配置</param>
         private static async ETTask CreatePuzzlesAsync(Grid grid, GridConfig gridConfig)
         {
+            // 先统计每个托盘的槽位总数，供表现层把整列槽位垂直居中
+            System.Collections.Generic.Dictionary<int, int> traySlotCounts = new();
+            foreach (puzzle info in gridConfig.PuzzleList)
+            {
+                traySlotCounts.TryGetValue(info.Tray, out int count);
+                traySlotCounts[info.Tray] = count + 1;
+            }
+
             for (int index = 0; index < gridConfig.PuzzleList.Count; ++index)
             {
                 puzzle puzzleInfo = gridConfig.PuzzleList[index];
                 long puzzleEntityId = PuzzleCoreConst.DefaultPuzzleEntityIdStart + index + 1;
-                await CreatePuzzleAsync(grid, puzzleEntityId, puzzleInfo);
+                traySlotCounts.TryGetValue(puzzleInfo.Tray, out int traySlotCount);
+                await CreatePuzzleAsync(grid, puzzleEntityId, puzzleInfo, traySlotCount);
             }
         }
 
@@ -90,8 +99,9 @@ namespace ET.Client
         /// <param name="grid">目标棋盘</param>
         /// <param name="puzzleId">目标 Puzzle 实体 id</param>
         /// <param name="puzzleInfo">当前关卡内的 Puzzle 实例配置</param>
+        /// <param name="traySlotCount">该 Puzzle 所属托盘的槽位总数</param>
         /// <returns>创建完成的 Puzzle</returns>
-        private static async ETTask<Puzzle> CreatePuzzleAsync(Grid grid, long puzzleId, puzzle puzzleInfo)
+        private static async ETTask<Puzzle> CreatePuzzleAsync(Grid grid, long puzzleId, puzzle puzzleInfo, int traySlotCount)
         {
             Puzzle existedPuzzle = grid.GetPuzzle(puzzleId);
             if (existedPuzzle != null)
@@ -101,9 +111,9 @@ namespace ET.Client
 
             PuzzleConfig puzzleConfig = PuzzleCoreHelper.GetPuzzleConfig(puzzleInfo.Id);
             Puzzle puzzleEntity = grid.AddChildWithId<Puzzle, int>(puzzleId, puzzleConfig.Id);
-            puzzleEntity.InitialWorldPositionX = puzzleInfo.Trans.X;
-            puzzleEntity.InitialWorldPositionY = puzzleInfo.Trans.Y;
-            puzzleEntity.InitialWorldPositionZ = puzzleInfo.Trans.Z;
+            puzzleEntity.Tray = puzzleInfo.Tray;
+            puzzleEntity.TraySlotIndex = puzzleInfo.SlotIndex;
+            puzzleEntity.TraySlotCount = traySlotCount;
 
             foreach (System.Collections.Generic.List<int> slotOffset in puzzleConfig.SlotOffset)
             {

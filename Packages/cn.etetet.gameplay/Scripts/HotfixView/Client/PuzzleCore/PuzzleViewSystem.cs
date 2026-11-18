@@ -451,7 +451,7 @@ namespace ET.Client
                 return self.Transform;
             }
 
-            Vector3 expectedLocalPosition = new Vector3(slotX * PuzzleViewConst.GridCellSize, -slotY * PuzzleViewConst.GridCellSize, 0f);
+            Vector3 expectedLocalPosition = new Vector3(slotX * PuzzleLayoutConst.GridCellSize, -slotY * PuzzleLayoutConst.GridCellSize, 0f);
             Transform bestTransform = self.SlotAnchorTransforms[0];
             float bestDistance = float.MaxValue;
             foreach (Transform slotAnchorTransform in self.SlotAnchorTransforms)

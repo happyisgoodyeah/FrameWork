@@ -33,7 +33,7 @@ namespace ET.Client
         private int height = 3;
 
         [SerializeField]
-        private float cellSize = 3f;
+        private float cellSize = PuzzleLayoutConst.GridCellSize;
 
         [SerializeField]
         private string prefabPathOverride;
@@ -188,7 +188,7 @@ namespace ET.Client
             configName = this.gameObject.name;
             width = 3;
             height = 3;
-            cellSize = 3f;
+            cellSize = PuzzleLayoutConst.GridCellSize;
             prefabPathOverride = $"Grid/{this.gameObject.name}";
             gridWorkbookPath = "Packages/cn.etetet.yiuilubangen/Luban/Config/Datas/Grid.xlsx";
             slotWorkbookPath = "Packages/cn.etetet.yiuilubangen/Luban/Config/Datas/Slot.xlsx";

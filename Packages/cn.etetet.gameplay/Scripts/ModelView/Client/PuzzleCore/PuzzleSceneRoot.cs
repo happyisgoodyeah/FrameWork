@@ -19,6 +19,11 @@ namespace ET.Client
         public Transform GridRoot { get; set; }
 
         /// <summary>
+        /// 当前负责渲染玩法内容的相机，生成关卡时按屏幕比例拟合一次。
+        /// </summary>
+        public Camera GameCamera { get; set; }
+
+        /// <summary>
         /// 当前根节点引用是否已经完成初始化。
         /// </summary>
         public bool IsInitialized { get; set; }

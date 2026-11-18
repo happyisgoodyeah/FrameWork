@@ -1,0 +1,11 @@
+﻿{
+    "Id": 100,
+    "Name": "Game",
+    "ScriptsReferences": 
+    {
+        "Hotfix": ["StartBase"],
+        "HotfixView": ["StartBase"],
+        "Model": ["StartBase"],
+        "ModelView": ["StartBase"]
+    }
+}

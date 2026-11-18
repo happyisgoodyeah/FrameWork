@@ -9,35 +9,23 @@
     "PuzzleList": [
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 0
       },
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": -7.5,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 7.5,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 0
       }
     ],
     "SlotList": [
@@ -62,35 +50,23 @@
     "PuzzleList": [
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 0
       },
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": -7.5,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 7.5,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 0
       }
     ],
     "SlotList": [
@@ -115,27 +91,18 @@
     "PuzzleList": [
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 0
       },
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": -7.5,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 1
       },
       {
         "Id": 1003,
-        "Trans": {
-          "x": 15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 0
       }
     ],
     "SlotList": [
@@ -160,19 +127,13 @@
     "PuzzleList": [
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 0
       },
       {
         "Id": 1003,
-        "Trans": {
-          "x": -15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 0
       }
     ],
     "SlotList": [
@@ -197,35 +158,23 @@
     "PuzzleList": [
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": 5,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 0
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 6,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 0
       },
       {
         "Id": 1003,
-        "Trans": {
-          "x": 15,
-          "y": -3,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 1
       },
       {
         "Id": 1003,
-        "Trans": {
-          "x": -15,
-          "y": -3,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 1
       }
     ],
     "SlotList": [
@@ -257,35 +206,23 @@
     "PuzzleList": [
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 0
       },
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": -7.5,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 7.5,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 0
       }
     ],
     "SlotList": [
@@ -310,35 +247,23 @@
     "PuzzleList": [
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 0
       },
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": -7.5,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 7.5,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 0
       }
     ],
     "SlotList": [
@@ -363,35 +288,23 @@
     "PuzzleList": [
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 0
       },
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": -7.5,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 7.5,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 0
       }
     ],
     "SlotList": [
@@ -416,35 +329,23 @@
     "PuzzleList": [
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 0
       },
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": -7.5,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 7.5,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 0
       }
     ],
     "SlotList": [
@@ -469,35 +370,23 @@
     "PuzzleList": [
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 0
       },
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": -7.5,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 7.5,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 0
       }
     ],
     "SlotList": [
@@ -522,35 +411,23 @@
     "PuzzleList": [
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 0
       },
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": -7.5,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 7.5,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 0
       }
     ],
     "SlotList": [
@@ -575,35 +452,23 @@
     "PuzzleList": [
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 0
       },
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": -7.5,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 7.5,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 0
       }
     ],
     "SlotList": [
@@ -628,35 +493,23 @@
     "PuzzleList": [
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 0
       },
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": -7.5,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 7.5,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 0
       }
     ],
     "SlotList": [
@@ -681,35 +534,23 @@
     "PuzzleList": [
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 0
       },
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": -7.5,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 7.5,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 0
       }
     ],
     "SlotList": [
@@ -734,35 +575,23 @@
     "PuzzleList": [
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 0
       },
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": -7.5,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 7.5,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 0
       }
     ],
     "SlotList": [
@@ -787,35 +616,23 @@
     "PuzzleList": [
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 0
       },
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": -7.5,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 7.5,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 0
       }
     ],
     "SlotList": [
@@ -840,35 +657,23 @@
     "PuzzleList": [
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 0
       },
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": -7.5,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 7.5,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 0
       }
     ],
     "SlotList": [
@@ -893,35 +698,23 @@
     "PuzzleList": [
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 0
       },
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": -7.5,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 7.5,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 0
       }
     ],
     "SlotList": [
@@ -946,35 +739,23 @@
     "PuzzleList": [
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 0
       },
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": -7.5,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 7.5,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 0
       }
     ],
     "SlotList": [
@@ -999,35 +780,23 @@
     "PuzzleList": [
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 0
       },
       {
         "Id": 1001,
-        "Trans": {
-          "x": -15,
-          "y": -7.5,
-          "z": 0
-        }
+        "Tray": 0,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 0,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 1
       },
       {
         "Id": 1002,
-        "Trans": {
-          "x": 15,
-          "y": 7.5,
-          "z": 0
-        }
+        "Tray": 1,
+        "SlotIndex": 0
       }
     ],
     "SlotList": [

@@ -25,7 +25,7 @@ namespace ET.Client
                 return;
             }
 
-            UnityEngine.Vector3 worldPosition = new UnityEngine.Vector3(puzzle.InitialWorldPositionX, puzzle.InitialWorldPositionY, puzzle.InitialWorldPositionZ);
+            UnityEngine.Vector3 worldPosition = PuzzleTrayHelper.ResolveTrayWorldPosition(scene, puzzle);
             puzzle.AddComponent<PuzzleView, UnityEngine.GameObject, UnityEngine.Vector3>(prefab, worldPosition);
             if (puzzle.GetComponent<PuzzleDragComponent>() == null)
             {

@@ -1,15 +1,17 @@
 ﻿{
   "name": "cn.etetet.gamebase",
   "displayName": "GameBase",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "unity": "2022.3",
-  "description": "游戏基础",
+  "description": "游戏基础，与具体玩法无关的通用能力层",
   "author": {
     "name": "behappy"
   },
   "repository": {},
   "relatedPackages": {},
-  "dependencies": {},
+  "dependencies": {
+    "cn.etetet.core": "3.0.3"
+  },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@ET-Packages"
   }
