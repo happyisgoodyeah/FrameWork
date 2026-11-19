@@ -69,4 +69,24 @@ namespace ET.Client
             self.DraggingTarget = default;
         }
     }
+
+    /// <summary>
+    /// 取消手势时回退拼图拖拽并清理拎起表现
+    /// </summary>
+    [Event(SceneType.Current)]
+    public class PointerCancel_ResetPuzzleInteraction : AEvent<Scene, PointerCancel>
+    {
+        /// <summary>
+        /// 恢复拖拽起点并释放当前交互目标，取消不触发落位或旋转
+        /// </summary>
+        protected override async ETTask Run(Scene scene, PointerCancel args)
+        {
+            DragInteractionStateComponent interaction = scene.GetComponent<DragInteractionStateComponent>();
+            Puzzle draggingPuzzle = interaction?.GetDraggingTarget() as Puzzle;
+            draggingPuzzle?.GetComponent<PuzzleDragComponent>()?.RestoreInitialPosition();
+            interaction?.ClearDraggingTarget();
+            PuzzleInputResolver.ResolvePress(args.Context, false).PuzzleView?.SetPickedUp(false);
+            await ETTask.CompletedTask;
+        }
+    }
 }

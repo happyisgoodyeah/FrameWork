@@ -15,12 +15,19 @@ namespace ET.Client
         private const float BlockedRotationAngle = 30f;
         private const float BlockedRotationTweenDuration = 0.1f;
 
+        /// <summary>为当前拼图切换按下与待机动画</summary>
+        public static void SetPickedUp(this PuzzleView self, bool pickedUp)
+        {
+            self.SpriteRenderer.GetComponent<PuzzleGame.PuzzleIdleAnimation>()?.SetPickedUp(pickedUp);
+        }
+
         /// <summary>
         /// 创建 Puzzle 场景对象，并绑定主图、多边形碰撞体和锚点结构
         /// </summary>
         [EntitySystem]
         private static void Awake(this PuzzleView self, GameObject prefab, Vector3 localPosition)
         {
+            self.IsInitialized = false;
             PuzzleSceneRoot puzzleSceneRoot = self.Scene().InitializePuzzleSceneRoot();
             GameObject instance = UnityEngine.Object.Instantiate(prefab);
             if (instance == null)
@@ -52,6 +59,7 @@ namespace ET.Client
             self.BindEntityReference(instance);
             self.RefreshRotation();
             self.RestoreVisualPriority();
+            self.IsInitialized = true;
         }
 
         /// <summary>
@@ -99,17 +107,19 @@ namespace ET.Client
         }
 
         /// <summary>
-        /// 释放 Puzzle 对应的场景对象。
+        /// 结束动画并释放 Puzzle 对应的场景对象
         /// </summary>
         [EntitySystem]
         private static void Destroy(this PuzzleView self)
         {
+            self.IsInitialized = false;
             self.KillRotationTween();
             if (self.GameObject == null)
             {
                 return;
             }
 
+            self.GameObject.SetActive(false);
             UnityEngine.Object.Destroy(self.GameObject);
         }
 
@@ -470,6 +480,30 @@ namespace ET.Client
             }
 
             return bestTransform != null ? bestTransform : self.Transform;
+        }
+    }
+
+    /// <summary>在按下时播放拎起动画，覆盖点击与拖拽手势</summary>
+    [Event(SceneType.Current)]
+    public class PointerDown_PlayPuzzlePickup : AEvent<Scene, PointerDown>
+    {
+        /// <summary>切换按下时命中的拼图表现</summary>
+        protected override async ETTask Run(Scene scene, PointerDown args)
+        {
+            PuzzleInputResolver.ResolvePress(args.Context).PuzzleView?.SetPickedUp(true);
+            await ETTask.CompletedTask;
+        }
+    }
+
+    /// <summary>在松手时结束拎起动画</summary>
+    [Event(SceneType.Current)]
+    public class PointerUp_StopPuzzlePickup : AEvent<Scene, PointerUp>
+    {
+        /// <summary>恢复按压起点命中的拼图表现，通关收尾期间仍结束拎起状态</summary>
+        protected override async ETTask Run(Scene scene, PointerUp args)
+        {
+            PuzzleInputResolver.ResolvePress(args.Context, false).PuzzleView?.SetPickedUp(false);
+            await ETTask.CompletedTask;
         }
     }
 }

@@ -16,7 +16,7 @@ namespace ET.Client
         }
 
         /// <summary>
-        /// 在当前场景中按指定配置创建 Grid、Grid Slot 和 Puzzle 数据
+        /// 按指定配置创建关卡，并在必需的客户端表现全部就绪后返回
         /// </summary>
         /// <param name="scene">当前场景</param>
         /// <param name="gridConfigId">Grid 配置 id</param>
@@ -26,6 +26,10 @@ namespace ET.Client
             Grid existedGrid = scene.GetGrid();
             if (existedGrid != null)
             {
+                if (!existedGrid.IsReady || existedGrid.GridConfigId != gridConfigId || existedGrid.CompletionPublished)
+                {
+                    throw new System.InvalidOperationException($"grid creation is not allowed in the current state: {gridConfigId}");
+                }
                 return existedGrid;
             }
 
@@ -35,38 +39,64 @@ namespace ET.Client
             ValidateGridConfig(gridConfig, width, height);
 
             Grid grid = scene.AddChildWithId<Grid, int, int>(PuzzleCoreConst.DefaultGridId, width, height);
+            EntityRef<Grid> gridRef = grid;
             grid.GridConfigId = gridConfig.Id;
-            await EventSystem.Instance.PublishAsync(scene, new AfterCreateGrid() { Grid = grid });
-            if (scene.IsDisposed || grid.IsDisposed)
+            try
             {
-                return null;
+                await EventSystem.Instance.PublishAsync(scene, new AfterCreateGrid() { Grid = grid });
+                grid = gridRef;
+                if (grid == null)
+                {
+                    return null;
+                }
+
+                EventSystem.Instance.Invoke(new PuzzleViewCreationCheck() { Entity = grid });
+
+                await CreateGridSlotsAsync(grid, gridConfig, width, height);
+                grid = gridRef;
+                if (grid == null)
+                {
+                    return null;
+                }
+
+                await CreatePuzzlesAsync(grid, gridConfig);
+                grid = gridRef;
+                if (grid == null)
+                {
+                    return null;
+                }
+
+                grid.RefreshStatistics();
+                grid.IsReady = true;
+                Log.Info($"create grid success: scene={scene.Name} gridConfigId={gridConfig.Id} size={width}x{height} placeable={grid.PlaceableCount} occupied={grid.OccupiedCount} puzzleCount={gridConfig.PuzzleList.Count}");
+                return grid;
             }
-
-            CreateGridSlots(grid, gridConfig, width, height);
-            await CreatePuzzlesAsync(grid, gridConfig);
-            grid.RefreshStatistics();
-
-            Log.Info($"create grid success: scene={scene.Name} gridConfigId={gridConfig.Id} size={width}x{height} placeable={grid.PlaceableCount} occupied={grid.OccupiedCount} puzzleCount={gridConfig.PuzzleList.Count}");
-            return grid;
+            catch
+            {
+                ((Grid)gridRef)?.Dispose();
+                throw;
+            }
         }
 
         /// <summary>
-        /// 根据 Grid 配置批量创建棋盘格
+        /// 根据配置创建棋盘格并等待每个槽位的表现检查完成
         /// </summary>
         /// <param name="grid">目标棋盘</param>
         /// <param name="gridConfig">当前关卡配置</param>
         /// <param name="width">棋盘列数</param>
         /// <param name="height">棋盘行数</param>
-        private static void CreateGridSlots(Grid grid, GridConfig gridConfig, int width, int height)
+        private static async ETTask CreateGridSlotsAsync(Grid grid, GridConfig gridConfig, int width, int height)
         {
             for (int y = 0; y < height; ++y)
             {
                 for (int x = 0; x < width; ++x)
                 {
-                    int slotConfigId = gridConfig.SlotList[y * width + x];
-                    grid.AddSlot(x, y, slotConfigId);
+                    int index = y * width + x;
+                    grid.AddSlot(x, y, gridConfig.SlotList[index]);
                 }
             }
+
+            await PublishSlotsCreatedAsync(grid);
         }
 
         /// <summary>
@@ -76,6 +106,7 @@ namespace ET.Client
         /// <param name="gridConfig">当前关卡配置</param>
         private static async ETTask CreatePuzzlesAsync(Grid grid, GridConfig gridConfig)
         {
+            EntityRef<Grid> gridRef = grid;
             // 先统计每个托盘的槽位总数，供表现层把整列槽位垂直居中
             System.Collections.Generic.Dictionary<int, int> traySlotCounts = new();
             foreach (puzzle info in gridConfig.PuzzleList)
@@ -86,6 +117,12 @@ namespace ET.Client
 
             for (int index = 0; index < gridConfig.PuzzleList.Count; ++index)
             {
+                grid = gridRef;
+                if (grid == null)
+                {
+                    return;
+                }
+
                 puzzle puzzleInfo = gridConfig.PuzzleList[index];
                 long puzzleEntityId = PuzzleCoreConst.DefaultPuzzleEntityIdStart + index + 1;
                 traySlotCounts.TryGetValue(puzzleInfo.Tray, out int traySlotCount);
@@ -121,32 +158,48 @@ namespace ET.Client
                 puzzleEntity.AddSlot(slotOffset[0], slotOffset[1], false);
             }
 
+            EntityRef<Puzzle> puzzleRef = puzzleEntity;
             await EventSystem.Instance.PublishAsync(grid.Scene(), new AfterCreatePuzzle() { Puzzle = puzzleEntity });
-            if (grid.IsDisposed || puzzleEntity.IsDisposed)
+            puzzleEntity = puzzleRef;
+            if (puzzleEntity == null)
             {
-                return puzzleEntity;
+                return null;
             }
 
-            PublishPuzzleSlotsCreated(puzzleEntity);
-            return puzzleEntity;
+            EventSystem.Instance.Invoke(new PuzzleViewCreationCheck() { Entity = puzzleEntity });
+            await PublishSlotsCreatedAsync(puzzleEntity);
+            return puzzleRef;
         }
 
         /// <summary>
-        /// 发布 Puzzle 下所有形状格的数据创建完成事件
+        /// 等待父实体下所有槽位的创建事件完成，再确认必需表现全部成功
         /// </summary>
-        /// <param name="puzzle">目标 Puzzle</param>
-        private static void PublishPuzzleSlotsCreated(Puzzle puzzle)
+        /// <param name="parent">持有棋盘格或形状格的父实体</param>
+        private static async ETTask PublishSlotsCreatedAsync(Entity parent)
         {
-            if (puzzle.ChildrenCount() <= 0)
+            EntityRef<Entity> parentRef = parent;
+            System.Collections.Generic.List<ETTask> slotCreated = new();
+            foreach (Entity child in parent.Children.Values)
+            {
+                if (child is Slot slot)
+                {
+                    slotCreated.Add(EventSystem.Instance.PublishAsync(parent.Scene(), new AfterCreateSlot() { Slot = slot }));
+                }
+            }
+
+            await ETTaskHelper.WaitAll(slotCreated);
+            parent = parentRef;
+            if (parent == null)
             {
                 return;
             }
 
-            foreach (Entity child in puzzle.Children.Values)
+            // PublishAsync 和 WaitAll 只等待结束，成功状态由主链直接检查
+            foreach (Entity child in parent.Children.Values)
             {
                 if (child is Slot slot)
                 {
-                    EventSystem.Instance.Publish(puzzle.Scene(), new AfterCreateSlot() { Slot = slot });
+                    EventSystem.Instance.Invoke(new PuzzleViewCreationCheck() { Entity = slot });
                 }
             }
         }

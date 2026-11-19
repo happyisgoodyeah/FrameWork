@@ -8,6 +8,9 @@ namespace ET.Client
     [ComponentOf(typeof(Slot))]
     public class SlotView : Entity, IAwake<GameObject>, IDestroy
     {
+        /// <summary>槽位场景节点和实体桥接是否完整绑定</summary>
+        public bool IsInitialized { get; set; }
+
         /// <summary>
         /// 当前 Slot 绑定的场景对象。
         /// </summary>

@@ -14,5 +14,37 @@
     "IntervalTimeMax": 0,
     "NextTimeMin": 0,
     "NextTimeMax": 1
+  },
+  {
+    "groupId": "bg1",
+    "AudioNames": [
+      "Audio_Wordless_Bgm"
+    ],
+    "Volume": 0.65,
+    "PlayNumMin": 1,
+    "PlayNumMax": 1,
+    "SpatialBlend": 0,
+    "DistanceMin": 500,
+    "DistanceMax": 800,
+    "IntervalTimeMin": 0,
+    "IntervalTimeMax": 0,
+    "NextTimeMin": 0,
+    "NextTimeMax": 0
+  },
+  {
+    "groupId": "bg2",
+    "AudioNames": [
+      "Audio_Wordless_Landing"
+    ],
+    "Volume": 0.8,
+    "PlayNumMin": 1,
+    "PlayNumMax": 1,
+    "SpatialBlend": 0,
+    "DistanceMin": 500,
+    "DistanceMax": 800,
+    "IntervalTimeMin": 0,
+    "IntervalTimeMax": 0,
+    "NextTimeMin": 0,
+    "NextTimeMax": 0
   }
 ]

@@ -10,6 +10,9 @@ namespace ET.Client
     [ComponentOf(typeof(Puzzle))]
     public class PuzzleView : Entity, IAwake<GameObject, Vector3>, IDestroy
     {
+        /// <summary>拼图场景结构和交互组件是否完整初始化</summary>
+        public bool IsInitialized { get; set; }
+
         /// <summary>
         /// Puzzle 在场景中的根节点对象。
         /// </summary>

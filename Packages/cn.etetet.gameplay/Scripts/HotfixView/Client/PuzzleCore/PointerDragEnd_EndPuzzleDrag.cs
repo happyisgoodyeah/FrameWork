@@ -3,13 +3,13 @@ using UnityEngine;
 namespace ET.Client
 {
     /// <summary>
-    /// 在通用拖拽结束事件中结算 Puzzle 拖拽。
+    /// 在通用拖拽结束事件中结算 Puzzle 拖拽
     /// </summary>
     [Event(SceneType.Current)]
     public class PointerDragEnd_EndPuzzleDrag : AEvent<Scene, PointerDragEnd>
     {
         /// <summary>
-        /// 根据当前 Puzzle 交互状态完成拖拽落位或回退。
+        /// 根据当前 Puzzle 交互状态完成拖拽落位或回退
         /// </summary>
         protected override async ETTask Run(Scene scene, PointerDragEnd args)
         {
@@ -27,11 +27,11 @@ namespace ET.Client
         }
 
         /// <summary>
-        /// 处理一次已经进入正式拖拽状态的松手结算。
+        /// 处理一次已经进入正式拖拽状态的松手结算
         /// </summary>
-        /// <param name="scene">当前场景。</param>
-        /// <param name="draggingPuzzle">本次正在拖拽的 Puzzle。</param>
-        /// <param name="pointerWorldPosition">松手时指针所在的世界坐标。</param>
+        /// <param name="scene">当前场景</param>
+        /// <param name="draggingPuzzle">本次正在拖拽的 Puzzle</param>
+        /// <param name="pointerWorldPosition">松手时指针所在的世界坐标</param>
         private void HandleDragRelease(Scene scene, Puzzle draggingPuzzle, Vector3 pointerWorldPosition)
         {
             PuzzleDragComponent dragComponent = draggingPuzzle.GetComponent<PuzzleDragComponent>();
@@ -45,12 +45,9 @@ namespace ET.Client
 
             if (dragComponent.IsInGridSnapMode())
             {
-                if (dragComponent.CanFinalizeGridSnap() && grid != null)
+                if (dragComponent.CanFinalizeGridSnap() && gridView != null && dragComponent.SnapToAnchor(grid))
                 {
-                    if (dragComponent.SnapToAnchor(grid))
-                    {
-                        grid.TryPublishCompletion();
-                    }
+                    this.CommitLanding(grid, gridView, draggingPuzzle, puzzleView);
                 }
                 else
                 {
@@ -69,15 +66,26 @@ namespace ET.Client
             Vector2 gridCoordinate = gridView.WorldToGridCoordinate(pointerWorldPosition);
             int anchorX = Mathf.RoundToInt(gridCoordinate.x);
             int anchorY = Mathf.RoundToInt(gridCoordinate.y);
-            bool placed = grid.Contains(anchorX, anchorY) && draggingPuzzle.TryPlaceOnGrid(grid, anchorX, anchorY);
-            if (placed)
+            if (grid.Contains(anchorX, anchorY) && dragComponent.SnapToAnchor(grid, anchorX, anchorY))
             {
-                dragComponent.SnapToAnchor(grid);
-                grid.TryPublishCompletion();
+                this.CommitLanding(grid, gridView, draggingPuzzle, puzzleView);
                 return;
             }
 
             dragComponent.RestoreInitialPosition();
+        }
+
+        /// <summary>在最终落位成功后播放反馈并检测通关</summary>
+        private void CommitLanding(Grid grid, GridView gridView, Puzzle puzzle, PuzzleView puzzleView)
+        {
+            if (gridView.GameObject.TryGetComponent(out PuzzleGame.PlacementFeedback feedback))
+            {
+                Vector3 anchor = gridView.GetGridCoordinateWorldPosition(puzzle.AnchorX, puzzle.AnchorY);
+                Vector3 centerOffset = puzzleView.SpriteRenderer.bounds.center - puzzleView.GetOriginWorldPosition();
+                feedback.PlayLanding(anchor + centerOffset);
+            }
+
+            grid.TryPublishCompletion();
         }
     }
 }

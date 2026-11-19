@@ -17,6 +17,7 @@ namespace ET.Client
                 return;
             }
 
+            EntityRef<Slot> slotRef = slot;
             UnityEngine.GameObject prefab = null;
             if (slot.IsGridSlot())
             {
@@ -25,7 +26,8 @@ namespace ET.Client
                 prefab = await scene.GetComponent<ResourcesLoaderComponent>().LoadAssetAsync<UnityEngine.GameObject>(assetLocation);
             }
 
-            if (scene.IsDisposed || slot.IsDisposed || slot.GetComponent<SlotView>() != null)
+            slot = slotRef;
+            if (slot == null || slot.GetComponent<SlotView>() != null)
             {
                 return;
             }

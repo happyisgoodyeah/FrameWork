@@ -9,17 +9,20 @@ namespace ET.Client
     public static partial class GridViewSystem
     {
         /// <summary>
-        /// 创建 Grid 的场景根节点和 Grid Slot 的挂载容器
+        /// 创建棋盘表现并初始化主题环境
         /// </summary>
         [EntitySystem]
         private static void Awake(this GridView self, GameObject prefab, Vector3 localPosition, float cellSize)
         {
+            self.IsInitialized = false;
             PuzzleSceneRoot puzzleSceneRoot = self.Scene().InitializePuzzleSceneRoot();
             GameObject instance = UnityEngine.Object.Instantiate(prefab);
             if (instance == null)
             {
                 throw new UnityException("grid prefab instantiate failed");
             }
+
+            self.GameObject = instance;
 
             instance.transform.SetParent(puzzleSceneRoot.GridRoot, false);
             instance.name = $"{instance.name}_{self.GetParent<Grid>().Id}";
@@ -38,26 +41,32 @@ namespace ET.Client
                 throw new UnityException("grid prefab SlotTransform must contain CompositeCollider2D");
             }
 
-            self.GameObject = instance;
             self.Transform = instance.transform;
             self.PuzzleRoot = puzzleRoot;
             self.SlotRoot = slotRoot;
             self.CompositeCollider2D = compositeCollider2D;
             self.CellSize = cellSize;
             self.BindEntityReference(instance);
+            if (instance.TryGetComponent(out PuzzleGame.LevelSceneArt art))
+            {
+                art.Configure(self.GetParent<Grid>().GridConfigId, puzzleSceneRoot.GameCamera);
+            }
+            self.IsInitialized = true;
         }
 
         /// <summary>
-        /// 释放 Grid 的场景根节点
+        /// 释放棋盘场景节点并立即停止交互
         /// </summary>
         [EntitySystem]
         private static void Destroy(this GridView self)
         {
+            self.IsInitialized = false;
             if (self.GameObject == null)
             {
                 return;
             }
 
+            self.GameObject.SetActive(false);
             UnityEngine.Object.Destroy(self.GameObject);
         }
 

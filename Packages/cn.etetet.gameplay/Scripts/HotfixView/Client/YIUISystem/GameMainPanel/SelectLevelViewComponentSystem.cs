@@ -152,12 +152,13 @@ namespace ET.Client
         }
 
         /// <summary>
-        /// 返回主菜单视图
+        /// 取消当前关卡加载并返回主菜单视图
         /// </summary>
         /// <param name="self">关卡选择视图</param>
         [YIUIInvoke(SelectLevelViewComponent.OnEventBackMenuBtnClickInvoke)]
         private static async ETTask OnEventBackMenuBtnClickInvoke(this SelectLevelViewComponent self)
         {
+            PuzzleLevelRuntimeHelper.ClearCurrentLevel(self.Root().CurrentScene());
             await self.YIUIRoot().OpenPanelAsync<GameMainPanelPanelComponent, EGameMainPanelPanelViewEnum>(EGameMainPanelPanelViewEnum.Main1View);
         }
 

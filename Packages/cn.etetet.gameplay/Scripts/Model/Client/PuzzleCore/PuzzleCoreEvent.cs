@@ -1,6 +1,15 @@
 namespace ET.Client
 {
     /// <summary>
+    /// 在进入下一初始化阶段前确认必需的客户端表现已创建成功
+    /// </summary>
+    public struct PuzzleViewCreationCheck
+    {
+        /// <summary>刚完成生命周期事件的 Grid、Puzzle 或 Slot</summary>
+        public Entity Entity;
+    }
+
+    /// <summary>
     /// Grid 数据实体创建完成事件。
     /// </summary>
     public struct AfterCreateGrid

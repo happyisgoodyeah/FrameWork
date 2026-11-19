@@ -3,6 +3,14 @@ using UnityEngine;
 namespace ET.Client
 {
     /// <summary>
+    /// 当前指针因失焦、暂停、触点取消或 UI 拦截而中止
+    /// </summary>
+    public struct PointerCancel
+    {
+        public PointerInputContext Context;
+    }
+
+    /// <summary>
     /// 当前输入对应的按钮类型。
     /// </summary>
     public enum PointerButton : byte
@@ -41,7 +49,7 @@ namespace ET.Client
         /// <summary>
         /// 通过 GameObjectEntityRef 反查到的 ET Entity。
         /// </summary>
-        public Entity Entity;
+        public EntityRef<Entity> Entity;
     }
 
     /// <summary>

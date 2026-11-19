@@ -17,16 +17,24 @@ namespace ET.Client
                 return;
             }
 
+            EntityRef<Puzzle> puzzleRef = puzzle;
             PuzzleConfig puzzleConfig = PuzzleCoreHelper.GetPuzzleConfig(puzzle.PuzzleConfigId);
             string assetLocation = ResourceLocationHelper.ToAssetLocation(puzzleConfig.PrefabPath);
             UnityEngine.GameObject prefab = await scene.GetComponent<ResourcesLoaderComponent>().LoadAssetAsync<UnityEngine.GameObject>(assetLocation);
-            if (scene.IsDisposed || puzzle.IsDisposed || puzzle.GetComponent<PuzzleView>() != null)
+            puzzle = puzzleRef;
+            if (puzzle == null || puzzle.GetComponent<PuzzleView>() != null)
             {
                 return;
             }
 
             UnityEngine.Vector3 worldPosition = PuzzleTrayHelper.ResolveTrayWorldPosition(scene, puzzle);
-            puzzle.AddComponent<PuzzleView, UnityEngine.GameObject, UnityEngine.Vector3>(prefab, worldPosition);
+            PuzzleView view = puzzle.AddComponent<PuzzleView, UnityEngine.GameObject, UnityEngine.Vector3>(prefab, worldPosition);
+            if (puzzle.PuzzleConfigId == PuzzleCoreConst.BasketChickConfigId)
+            {
+                puzzle.GetParent<Grid>().GetComponent<GridView>().GameObject.GetComponent<PuzzleGame.LevelOneBasketReveal>()?
+                    .RegisterChick(view.GameObject);
+            }
+
             if (puzzle.GetComponent<PuzzleDragComponent>() == null)
             {
                 puzzle.AddComponent<PuzzleDragComponent>();

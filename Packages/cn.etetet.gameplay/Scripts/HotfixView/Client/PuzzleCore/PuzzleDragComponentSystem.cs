@@ -212,26 +212,30 @@ namespace ET.Client
         public static bool SnapToAnchor(this PuzzleDragComponent self, Grid grid)
         {
             Puzzle puzzle = self.GetParent<Puzzle>();
-            PuzzleView puzzleView = puzzle.GetComponent<PuzzleView>();
-            GridView gridView = grid?.GetComponent<GridView>();
             int anchorX = self.IsGridSnapActive ? self.SnapAnchorX : puzzle.AnchorX;
             int anchorY = self.IsGridSnapActive ? self.SnapAnchorY : puzzle.AnchorY;
+            return self.SnapToAnchor(grid, anchorX, anchorY);
+        }
+
+        /// <summary>
+        /// 验证指定锚点后提交占格并播放落位动画
+        /// </summary>
+        public static bool SnapToAnchor(this PuzzleDragComponent self, Grid grid, int anchorX, int anchorY)
+        {
+            Puzzle puzzle = self.GetParent<Puzzle>();
+            PuzzleView puzzleView = puzzle.GetComponent<PuzzleView>();
+            GridView gridView = grid?.GetComponent<GridView>();
             if (puzzleView == null || puzzleView.Transform == null || gridView == null)
             {
-                self.ClearDragState();
                 return false;
             }
 
             if (puzzle.CheckPlacement(grid, anchorX, anchorY, out List<Slot> matchedGridSlots) != PuzzlePlacementCheckResult.Success)
             {
-                self.ClearDragState();
                 return false;
             }
 
-            if (self.IsGridSnapActive || puzzle.State != PuzzleState.Placed)
-            {
-                puzzle.ApplyPlacement(grid, anchorX, anchorY, matchedGridSlots);
-            }
+            puzzle.ApplyPlacement(grid, anchorX, anchorY, matchedGridSlots);
 
             puzzle.State = PuzzleState.Placed;
             puzzleView.RestoreVisualPriority();

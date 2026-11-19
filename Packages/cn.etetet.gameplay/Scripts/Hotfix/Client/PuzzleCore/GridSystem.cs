@@ -5,6 +5,7 @@ namespace ET.Client
     [EntitySystemOf(typeof(Grid))]
     public static partial class GridSystem
     {
+        /// <summary>初始化棋盘尺寸及加载、通关状态</summary>
         [EntitySystem]
         private static void Awake(this Grid self, int width, int height)
         {
@@ -14,6 +15,7 @@ namespace ET.Client
             self.PlaceableCount = 0;
             self.OccupiedCount = 0;
             self.CompletionPublished = false;
+            self.IsReady = false;
         }
 
         /// <summary>
@@ -33,13 +35,13 @@ namespace ET.Client
         }
 
         /// <summary>
-        /// 向 Grid 中添加一个棋盘格 Slot，并发布 Slot 数据创建完成事件。
+        /// 向 Grid 添加已初始化的棋盘格 Slot
         /// </summary>
-        /// <param name="self">目标棋盘。</param>
-        /// <param name="x">棋盘格 X 坐标。</param>
-        /// <param name="y">棋盘格 Y 坐标。</param>
-        /// <param name="slotConfigId">对应的 Slot 配置 id。</param>
-        /// <returns>创建完成的 Grid Slot。</returns>
+        /// <param name="self">目标棋盘</param>
+        /// <param name="x">棋盘格 X 坐标</param>
+        /// <param name="y">棋盘格 Y 坐标</param>
+        /// <param name="slotConfigId">对应的 Slot 配置 id</param>
+        /// <returns>创建完成的 Grid Slot</returns>
         public static Slot AddSlot(this Grid self, int x, int y, int slotConfigId)
         {
             if (!self.Contains(x, y))
@@ -57,8 +59,6 @@ namespace ET.Client
             Slot slot = self.AddChildWithId<Slot, int, int, SlotType>(slotId, x, y, kind);
             slot.SlotConfigId = slotConfigId;
             slot.AddComponent<GridSlotStateComponent>();
-            self.RefreshStatistics();
-            EventSystem.Instance.Publish(self.Scene(), new AfterCreateSlot() { Slot = slot });
             return slot;
         }
 
@@ -103,13 +103,13 @@ namespace ET.Client
         }
 
         /// <summary>
-        /// 在棋盘首次完成时发布关卡完成事件
+        /// 在已就绪棋盘首次完成时冻结交互并发布关卡完成事件
         /// </summary>
         /// <param name="self">目标棋盘</param>
         /// <returns>本次调用是否发布了完成事件</returns>
         public static bool TryPublishCompletion(this Grid self)
         {
-            if (self == null || self.CompletionPublished || !self.IsCompleted())
+            if (self == null || !self.IsReady || self.CompletionPublished || !self.IsCompleted())
             {
                 return false;
             }

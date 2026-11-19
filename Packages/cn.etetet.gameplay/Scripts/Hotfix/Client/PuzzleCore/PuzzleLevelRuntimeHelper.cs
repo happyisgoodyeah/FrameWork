@@ -52,13 +52,19 @@ namespace ET.Client
         }
 
         /// <summary>
-        /// 清理旧关卡并创建新的关卡数据
+        /// 在没有加载或通关收尾任务时清理旧关卡并等待新关卡就绪
         /// </summary>
         /// <param name="scene">当前关卡逻辑场景</param>
         /// <param name="gridConfigId">Grid 配置 id</param>
         /// <returns>创建完成的 Grid</returns>
         public static async ETTask<Grid> StartLevelAsync(Scene scene, int gridConfigId)
         {
+            Grid currentGrid = scene.GetGrid();
+            if (currentGrid != null && (!currentGrid.IsReady || currentGrid.CompletionPublished))
+            {
+                return null;
+            }
+
             ClearCurrentLevel(scene);
             return await PuzzleBootstrapHelper.CreateGridAsync(scene, gridConfigId);
         }

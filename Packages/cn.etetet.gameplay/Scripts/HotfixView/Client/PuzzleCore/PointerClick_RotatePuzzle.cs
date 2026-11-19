@@ -7,10 +7,16 @@ namespace ET.Client
     public class PointerClick_RotatePuzzle : AEvent<Scene, PointerClick>
     {
         /// <summary>
-        /// 从按压起始命中结果中解析 Puzzle，并在点击命中时尝试旋转。
+        /// 在关卡就绪时处理拼图旋转或篮筐点击
         /// </summary>
         protected override async ETTask Run(Scene scene, PointerClick args)
         {
+            Grid grid = scene.GetGrid();
+            if (grid == null || !grid.IsReady || grid.CompletionPublished)
+            {
+                return;
+            }
+
             DragInteractionStateComponent interactionStateComponent = scene.GetComponent<DragInteractionStateComponent>();
             if (interactionStateComponent?.GetDraggingTarget() != null)
             {
@@ -23,6 +29,11 @@ namespace ET.Client
             if (puzzle != null)
             {
                 this.TryRotatePuzzle(scene, puzzle);
+            }
+            else
+            {
+                grid.GetComponent<GridView>().GameObject.GetComponent<PuzzleGame.LevelOneBasketReveal>()?
+                    .TryClick(args.Context.PressWorldPosition, args.Context.WorldPosition);
             }
 
             await ETTask.CompletedTask;

@@ -38,6 +38,8 @@ namespace ET.Client
             self.PressWorldPosition = Vector3.zero;
             self.PressStartTime = 0f;
             self.PressHitResults = Array.Empty<InputHitResult>();
+            self.ActivePointerId = -1;
+            self.IsTouchPointer = false;
         }
 
         /// <summary>
@@ -47,37 +49,106 @@ namespace ET.Client
         private static void Destroy(this InputComponent self)
         {
             self.MainCamera = null;
-            self.IsPointerPressed = false;
-            self.IsPointerDragging = false;
-            self.PressScreenPosition = Vector2.zero;
-            self.PressWorldPosition = Vector3.zero;
-            self.PressStartTime = 0f;
-            self.PressHitResults = Array.Empty<InputHitResult>();
+            self.ClearPress();
         }
 
         /// <summary>
-        /// 每帧采集鼠标主按钮输入并发布对应的通用输入事件
+        /// 每帧采集主触点或鼠标输入，并在失焦或暂停时取消当前手势
         /// </summary>
         [EntitySystem]
         private static void Update(this InputComponent self)
         {
-            if (!self.TryGetMainCamera(out Camera mainCamera))
+            if (!Application.isFocused || Time.timeScale <= 0f || !self.TryGetMainCamera(out Camera mainCamera))
+            {
+                self.CancelPress();
+                return;
+            }
+
+            if (self.IsPointerPressed && self.IsTouchPointer)
+            {
+                for (int i = 0; i < Input.touchCount; ++i)
+                {
+                    Touch touch = Input.GetTouch(i);
+                    if (touch.fingerId != self.ActivePointerId)
+                    {
+                        continue;
+                    }
+
+                    self.ProcessPointer(mainCamera, touch.position, false,
+                        touch.phase == TouchPhase.Ended, touch.phase == TouchPhase.Canceled, true, touch.fingerId);
+                    return;
+                }
+
+                self.CancelPress();
+                return;
+            }
+
+            if (Input.touchCount > 0)
+            {
+                if (self.IsPointerPressed)
+                {
+                    self.CancelPress();
+                }
+
+                for (int i = 0; i < Input.touchCount; ++i)
+                {
+                    Touch touch = Input.GetTouch(i);
+                    if (touch.phase != TouchPhase.Began)
+                    {
+                        continue;
+                    }
+
+                    self.ProcessPointer(mainCamera, touch.position, true, false, false, true, touch.fingerId);
+                    break;
+                }
+
+                return;
+            }
+
+            bool down = Input.GetMouseButtonDown(0);
+            bool released = Input.GetMouseButtonUp(0);
+            bool cancelled = self.IsPointerPressed && !Input.GetMouseButton(0) && !released;
+            self.ProcessPointer(mainCamera, Input.mousePosition, down, released, cancelled, false, -1);
+        }
+
+        /// <summary>
+        /// 将同一指针的按下、移动和释放转换为通用事件，释放在 UI 上时取消手势
+        /// </summary>
+        /// <param name="self">输入组件</param>
+        /// <param name="mainCamera">世界坐标转换使用的相机</param>
+        /// <param name="screenPosition">当前指针屏幕坐标</param>
+        /// <param name="down">本帧是否刚按下</param>
+        /// <param name="released">本帧是否正常释放</param>
+        /// <param name="cancelled">当前指针是否被取消</param>
+        /// <param name="isTouch">当前指针是否来自触屏</param>
+        /// <param name="pointerId">触点标识，鼠标使用 -1</param>
+        private static void ProcessPointer(this InputComponent self, Camera mainCamera, Vector2 screenPosition,
+            bool down, bool released, bool cancelled, bool isTouch, int pointerId)
+        {
+            if (cancelled)
+            {
+                self.CancelPress();
+                return;
+            }
+
+            if (!down && !self.IsPointerPressed)
             {
                 return;
             }
 
-            Vector2 screenPosition = Input.mousePosition;
             Vector3 worldPosition = self.ScreenToWorldPosition(mainCamera, screenPosition);
             InputHitResult[] hitResults = BuildHitResults(worldPosition, self.PhysicsLayerMask);
 
-            if (Input.GetMouseButtonDown(0) && !IsPointerOverUI())
+            if (down && !IsPointerOverUI(screenPosition, pointerId))
             {
                 self.BeginPress(screenPosition, worldPosition, hitResults);
+                self.ActivePointerId = pointerId;
+                self.IsTouchPointer = isTouch;
                 PointerInputContext pointerContext = self.CreatePointerContext(screenPosition, worldPosition, hitResults);
                 EventSystem.Instance.Publish(self.Scene(), new PointerDown() { Context = pointerContext });
             }
 
-            if (self.IsPointerPressed && Input.GetMouseButton(0) && !Input.GetMouseButtonDown(0))
+            if (self.IsPointerPressed && !down && !released)
             {
                 PointerInputContext pointerContext = self.CreatePointerContext(screenPosition, worldPosition, hitResults);
                 if (!self.IsPointerDragging && self.HasExceededDragStartThreshold(screenPosition))
@@ -93,8 +164,14 @@ namespace ET.Client
                 EventSystem.Instance.Publish(self.Scene(), new PointerHold() { Context = pointerContext });
             }
 
-            if (self.IsPointerPressed && Input.GetMouseButtonUp(0))
+            if (self.IsPointerPressed && released)
             {
+                if (IsPointerOverUI(screenPosition, pointerId))
+                {
+                    self.CancelPress();
+                    return;
+                }
+
                 PointerInputContext pointerContext = self.CreatePointerContext(screenPosition, worldPosition, hitResults);
                 if (self.IsPointerDragging)
                 {
@@ -113,8 +190,10 @@ namespace ET.Client
         /// <summary>
         /// 检测当前指针是否命中可拦截世界输入的 UGUI 元素，忽略仅用于阻挡 UI 穿透的 UIBlock
         /// </summary>
+        /// <param name="screenPosition">当前指针屏幕坐标</param>
+        /// <param name="pointerId">触点标识，鼠标使用 -1</param>
         /// <returns>指针是否被真实 UI 遮挡</returns>
-        private static bool IsPointerOverUI()
+        private static bool IsPointerOverUI(Vector2 screenPosition, int pointerId)
         {
             // 该文件中裸写的 EventSystem 是 ET 事件总线，这里必须用全限定名访问 UGUI 的事件系统
             UnityEngine.EventSystems.EventSystem uiEventSystem = UnityEngine.EventSystems.EventSystem.current;
@@ -125,7 +204,8 @@ namespace ET.Client
 
             UnityEngine.EventSystems.PointerEventData pointerEventData = new(uiEventSystem)
             {
-                position = Input.mousePosition
+                position = screenPosition,
+                pointerId = pointerId,
             };
 
             using var raycastResults = ListComponent<UnityEngine.EventSystems.RaycastResult>.Create();
@@ -165,7 +245,7 @@ namespace ET.Client
 
             mainCamera = Camera.main;
             self.MainCamera = mainCamera;
-            return mainCamera != null;
+            return mainCamera != null && mainCamera.isActiveAndEnabled;
         }
 
         /// <summary>
@@ -221,6 +301,25 @@ namespace ET.Client
             self.PressWorldPosition = Vector3.zero;
             self.PressStartTime = 0f;
             self.PressHitResults = Array.Empty<InputHitResult>();
+            self.ActivePointerId = -1;
+            self.IsTouchPointer = false;
+        }
+
+        /// <summary>
+        /// 取消未完成的按压并通知业务层回退拖拽和选中表现
+        /// </summary>
+        /// <param name="self">输入组件</param>
+        private static void CancelPress(this InputComponent self)
+        {
+            if (!self.IsPointerPressed)
+            {
+                return;
+            }
+
+            PointerInputContext context = self.CreatePointerContext(self.PressScreenPosition, self.PressWorldPosition,
+                Array.Empty<InputHitResult>());
+            self.ClearPress();
+            EventSystem.Instance.Publish(self.Scene(), new PointerCancel() { Context = context });
         }
 
         /// <summary>

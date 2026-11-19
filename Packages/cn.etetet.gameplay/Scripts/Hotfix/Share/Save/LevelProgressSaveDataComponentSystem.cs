@@ -23,6 +23,19 @@ namespace ET
         }
 
         /// <summary>
+        /// 兼容旧存档缺失首关解锁记录，结构缺失仍交由存档校验拒绝
+        /// </summary>
+        /// <param name="self">已反序列化的关卡进度</param>
+        [EntitySystem]
+        private static void Deserialize(this LevelProgressSaveDataComponent self)
+        {
+            if (self.UnlockedLevelIds != null)
+            {
+                self.UnlockFirstConfiguredLevel();
+            }
+        }
+
+        /// <summary>
         /// 判断关卡是否已经解锁
         /// </summary>
         /// <param name="self">关卡进度存档数据</param>

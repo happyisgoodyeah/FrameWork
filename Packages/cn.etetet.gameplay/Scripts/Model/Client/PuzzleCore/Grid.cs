@@ -12,6 +12,11 @@ namespace ET.Client
         public int GridConfigId { get; set; }
 
         /// <summary>
+        /// 当前棋盘是否已完成关卡初始化
+        /// </summary>
+        public bool IsReady { get; set; }
+
+        /// <summary>
         /// 棋盘列数
         /// </summary>
         public int Width { get; set; }

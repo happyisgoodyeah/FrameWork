@@ -8,7 +8,7 @@ namespace ET
     /// 关卡进度存档数据
     /// </summary>
     [ComponentOf(typeof(SaveDataRoot))]
-    public partial class LevelProgressSaveDataComponent : Entity, IAwake, ISerializeToEntity, ISaveDataComponent
+    public partial class LevelProgressSaveDataComponent : Entity, IAwake, IDeserialize, ISerializeToEntity, ISaveDataComponent
     {
         /// <summary>
         /// 数据版本

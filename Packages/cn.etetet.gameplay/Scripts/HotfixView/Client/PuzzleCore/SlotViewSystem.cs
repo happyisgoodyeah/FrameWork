@@ -9,30 +9,34 @@ namespace ET.Client
     public static partial class SlotViewSystem
     {
         /// <summary>
-        /// 根据 Slot 的父对象类型，创建或绑定对应的场景节点。
+        /// 根据 Slot 的父对象类型绑定场景节点，完整成功后标记初始化状态
         /// </summary>
         [EntitySystem]
         private static void Awake(this SlotView self, GameObject prefab)
         {
+            self.IsInitialized = false;
             Slot slot = self.GetParent<Slot>();
             if (slot.IsGridSlot())
             {
                 self.BindGridSlotView(slot, prefab);
+                self.IsInitialized = true;
                 return;
             }
 
             if (slot.IsPuzzleSlot())
             {
                 self.BindPuzzleSlotView(slot);
+                self.IsInitialized = true;
             }
         }
 
         /// <summary>
-        /// 根据绑定方式决定是否销毁当前场景对象。
+        /// 清除初始化状态并释放当前槽位拥有的场景对象
         /// </summary>
         [EntitySystem]
         private static void Destroy(this SlotView self)
         {
+            self.IsInitialized = false;
             if (!self.OwnsGameObject || self.GameObject == null)
             {
                 return;
@@ -42,7 +46,7 @@ namespace ET.Client
         }
 
         /// <summary>
-        /// 为 Grid Slot 实例化配置指定的 Slot prefab，并绑定独立 BoxCollider2D
+        /// 为棋盘格创建外观和独立碰撞体，失败时由槽位生命周期释放实例
         /// </summary>
         private static void BindGridSlotView(this SlotView self, Slot slot, GameObject prefab)
         {
@@ -63,6 +67,7 @@ namespace ET.Client
             instance.transform.localPosition = gridView.GetLocalPosition(slot);
 
             self.GameObject = instance;
+            self.OwnsGameObject = true;
             self.Transform = instance.transform;
             BoxCollider2D boxCollider2D = instance.GetComponent<BoxCollider2D>();
             if (boxCollider2D == null)
@@ -72,8 +77,11 @@ namespace ET.Client
 
             boxCollider2D.usedByComposite = false;
             self.Collider2D = boxCollider2D;
-            self.OwnsGameObject = true;
             self.BindEntityReference();
+            if (gridView.GameObject.TryGetComponent(out PuzzleGame.LevelSceneArt art))
+            {
+                art.ApplySlot(instance.transform, PuzzleCoreHelper.GetSlotConfig(slot.SlotConfigId).AllowPlace);
+            }
         }
 
         /// <summary>

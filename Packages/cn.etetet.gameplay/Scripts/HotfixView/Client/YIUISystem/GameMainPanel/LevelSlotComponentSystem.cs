@@ -76,10 +76,18 @@ namespace ET.Client
                 return;
             }
 
-            await PuzzleLevelRuntimeHelper.StartLevelAsync(currentScene, self.GridConfigId);
+            EntityRef<LevelSlotComponent> selfRef = self;
+            int gridConfigId = self.GridConfigId;
+            Grid grid = await PuzzleLevelRuntimeHelper.StartLevelAsync(currentScene, gridConfigId);
+            self = selfRef;
+            if (grid == null || self == null)
+            {
+                return;
+            }
+
             await self.DynamicEvent(root, new SelectLevelView_LevelSlotGoGrid()
             {
-                GridConfigId = self.GridConfigId,
+                GridConfigId = gridConfigId,
             });
         }
     }

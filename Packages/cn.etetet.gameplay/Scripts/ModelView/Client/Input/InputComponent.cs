@@ -47,5 +47,15 @@ namespace ET.Client
         /// 本次按压开始时命中的全部结果数组
         /// </summary>
         public InputHitResult[] PressHitResults { get; set; }
+
+        /// <summary>
+        /// 当前手势所属指针，鼠标使用 -1
+        /// </summary>
+        public int ActivePointerId { get; set; }
+
+        /// <summary>
+        /// 当前手势是否来自触屏
+        /// </summary>
+        public bool IsTouchPointer { get; set; }
     }
 }

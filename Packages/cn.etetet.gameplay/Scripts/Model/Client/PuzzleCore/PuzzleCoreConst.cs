@@ -5,6 +5,9 @@ namespace ET.Client
     /// </summary>
     public static class PuzzleCoreConst
     {
+        /// <summary>导入关卡中与篮筐揭晓关联的小鸡配置 ID</summary>
+        public const int BasketChickConfigId = 1101;
+
         /// <summary>
         /// 当前场景下默认 Grid 的固定实体 Id。
         /// </summary>
