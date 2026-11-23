@@ -2,6 +2,7 @@
     "name": "GameBase",
     "rootNamespace": "",
     "references": [
+        "ET.Core"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
