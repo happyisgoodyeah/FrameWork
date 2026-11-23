@@ -8,7 +8,7 @@ namespace ET.Client
     /// Puzzle 的场景表现组件，负责拼图主图片、碰撞体和预制体内结构节点绑定。
     /// </summary>
     [ComponentOf(typeof(Puzzle))]
-    public class PuzzleView : Entity, IAwake<GameObject, Vector3>, IDestroy
+    public class PuzzleView : Entity, IAwake<GameObject>, IDestroy
     {
         /// <summary>拼图场景结构和交互组件是否完整初始化</summary>
         public bool IsInitialized { get; set; }

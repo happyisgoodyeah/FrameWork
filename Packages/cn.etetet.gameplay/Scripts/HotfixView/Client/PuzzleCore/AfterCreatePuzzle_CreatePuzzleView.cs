@@ -7,7 +7,7 @@ namespace ET.Client
     public class AfterCreatePuzzle_CreatePuzzleView : AEvent<Scene, AfterCreatePuzzle>
     {
         /// <summary>
-        /// 在 Puzzle 数据创建完成后立即加载 PuzzleView
+        /// 加载拼图预制体并创建表现和拖拽组件
         /// </summary>
         protected override async ETTask Run(Scene scene, AfterCreatePuzzle args)
         {
@@ -27,8 +27,7 @@ namespace ET.Client
                 return;
             }
 
-            UnityEngine.Vector3 worldPosition = PuzzleTrayHelper.ResolveTrayWorldPosition(scene, puzzle);
-            puzzle.AddComponent<PuzzleView, UnityEngine.GameObject, UnityEngine.Vector3>(prefab, worldPosition);
+            puzzle.AddComponent<PuzzleView, UnityEngine.GameObject>(prefab);
 
             if (puzzle.GetComponent<PuzzleDragComponent>() == null)
             {

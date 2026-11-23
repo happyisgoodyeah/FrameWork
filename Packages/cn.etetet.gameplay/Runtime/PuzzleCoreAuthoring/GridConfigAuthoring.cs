@@ -777,7 +777,7 @@ namespace ET.Client
             }
 
             /// <summary>
-            /// 将配置路径转换为 Unity prefab 资源路径
+            /// 将相对路径解析到游戏预制体目录并保留完整资源路径
             /// </summary>
             /// <param name="resourcePath">配置中的资源路径</param>
             /// <returns>Unity prefab 资源路径</returns>
@@ -789,11 +789,11 @@ namespace ET.Client
                     return normalizedPath.EndsWith(".prefab", StringComparison.OrdinalIgnoreCase) ? normalizedPath : $"{normalizedPath}.prefab";
                 }
 
-                return $"Packages/cn.etetet.gameplay/Resources/{normalizedPath}.prefab";
+                return $"Packages/cn.etetet.gameplay/Resources/Prefab/{normalizedPath}.prefab";
             }
 
             /// <summary>
-            /// 将 Unity 资源路径转换为配置中使用的相对路径
+            /// 将游戏预制体路径转换为配置使用的目录相对路径
             /// </summary>
             /// <param name="assetPath">Unity 资源路径</param>
             /// <returns>配置资源相对路径</returns>
@@ -805,7 +805,7 @@ namespace ET.Client
                 }
 
                 string normalizedPath = assetPath.Replace('\\', '/').Trim();
-                const string resourceRoot = "Packages/cn.etetet.gameplay/Resources/";
+                const string resourceRoot = "Packages/cn.etetet.gameplay/Resources/Prefab/";
                 if (normalizedPath.StartsWith(resourceRoot, StringComparison.Ordinal))
                 {
                     normalizedPath = normalizedPath.Substring(resourceRoot.Length);

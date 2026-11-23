@@ -22,10 +22,12 @@ namespace ET.Client
         }
 
         /// <summary>
-        /// 创建 Puzzle 场景对象，并绑定主图、多边形碰撞体和锚点结构
+        /// 创建拼图表现并按主图外框放入当前托盘
         /// </summary>
+        /// <param name="self">拼图表现组件</param>
+        /// <param name="prefab">当前拼图预制体</param>
         [EntitySystem]
-        private static void Awake(this PuzzleView self, GameObject prefab, Vector3 localPosition)
+        private static void Awake(this PuzzleView self, GameObject prefab)
         {
             self.IsInitialized = false;
             PuzzleSceneRoot puzzleSceneRoot = self.Scene().InitializePuzzleSceneRoot();
@@ -37,7 +39,6 @@ namespace ET.Client
 
             instance.transform.SetParent(puzzleSceneRoot.SceneRoot, false);
             instance.name = $"{instance.name}_{self.GetParent<Puzzle>().Id}";
-            instance.transform.localPosition = localPosition;
 
             self.GameObject = instance;
             self.Transform = instance.transform;
@@ -59,6 +60,7 @@ namespace ET.Client
             self.PlacementEffectObject = null;
             self.BindEntityReference(instance);
             self.RefreshRotation();
+            self.SetWorldPosition(PuzzleTrayHelper.ResolveTrayWorldPosition(self));
             self.RestoreVisualPriority();
             self.IsInitialized = true;
         }

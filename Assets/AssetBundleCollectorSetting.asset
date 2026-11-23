@@ -167,7 +167,7 @@ MonoBehaviour:
       AssetTags: 
       ActiveRuleName: EnableGroup
       Collectors:
-      - CollectPath: Packages/cn.etetet.gameplay/Resources/Grid
+      - CollectPath: Packages/cn.etetet.gameplay/Resources/Prefab/Grid
         CollectorGUID: 48d98008ac35c8f47bf695d310ce5a5c
         CollectorType: 0
         AddressRuleName: AddressByFileName
@@ -180,8 +180,8 @@ MonoBehaviour:
       AssetTags: 
       ActiveRuleName: EnableGroup
       Collectors:
-      - CollectPath: Packages/cn.etetet.gameplay/Resources/LevelScenes
-        CollectorGUID: b8514c829d513d04d807f65bbd140153
+      - CollectPath: Packages/cn.etetet.gameplay/Resources/Prefab/LevelScene
+        CollectorGUID: ff52c8bf9a2c7414e84a451ca038b9d6
         CollectorType: 0
         AddressRuleName: AddressByFileName
         PackRuleName: PackDirectory
@@ -193,7 +193,7 @@ MonoBehaviour:
       AssetTags: 
       ActiveRuleName: EnableGroup
       Collectors:
-      - CollectPath: Packages/cn.etetet.gameplay/Resources/Puzzle
+      - CollectPath: Packages/cn.etetet.gameplay/Resources/Prefab/Puzzle
         CollectorGUID: 14e34b0333503e14d93dfd38838b9eb4
         CollectorType: 0
         AddressRuleName: AddressByFileName
@@ -206,7 +206,7 @@ MonoBehaviour:
       AssetTags: 
       ActiveRuleName: EnableGroup
       Collectors:
-      - CollectPath: Packages/cn.etetet.gameplay/Resources/Slot
+      - CollectPath: Packages/cn.etetet.gameplay/Resources/Prefab/Slot
         CollectorGUID: c6ef569efef64214b91bc96ee7c56f56
         CollectorType: 0
         AddressRuleName: AddressByFileName

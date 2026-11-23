@@ -316,7 +316,7 @@ namespace ET.Client
             }
 
             /// <summary>
-            /// 将 Unity 资源路径转换为 Slot 配表中使用的相对路径
+            /// 将游戏预制体路径转换为 Slot 配表使用的目录相对路径
             /// </summary>
             /// <param name="assetPath">Unity 资源路径</param>
             /// <returns>配表资源相对路径</returns>
@@ -328,7 +328,7 @@ namespace ET.Client
                 }
 
                 string normalizedPath = assetPath.Replace('\\', '/');
-                const string resourceRoot = "Packages/cn.etetet.gameplay/Resources/";
+                const string resourceRoot = "Packages/cn.etetet.gameplay/Resources/Prefab/";
                 if (normalizedPath.StartsWith(resourceRoot, StringComparison.Ordinal))
                 {
                     normalizedPath = normalizedPath.Substring(resourceRoot.Length);
