@@ -9,8 +9,10 @@ namespace ET.Client
     public class PointerDragEnd_EndPuzzleDrag : AEvent<Scene, PointerDragEnd>
     {
         /// <summary>
-        /// 根据当前 Puzzle 交互状态完成拖拽落位或回退
+        /// 根据当前 Puzzle 交互状态完成拖拽落位，失败时回初始托盘和默认朝向
         /// </summary>
+        /// <param name="scene">当前关卡场景</param>
+        /// <param name="args">松手输入上下文</param>
         protected override async ETTask Run(Scene scene, PointerDragEnd args)
         {
             DragInteractionStateComponent interactionStateComponent = scene.GetComponent<DragInteractionStateComponent>();
@@ -27,7 +29,7 @@ namespace ET.Client
         }
 
         /// <summary>
-        /// 处理一次已经进入正式拖拽状态的松手结算
+        /// 结算正式拖拽的松手位置，非法落点清除占格并回初始托盘和默认朝向
         /// </summary>
         /// <param name="scene">当前场景</param>
         /// <param name="draggingPuzzle">本次正在拖拽的 Puzzle</param>
@@ -47,7 +49,7 @@ namespace ET.Client
             {
                 if (dragComponent.CanFinalizeGridSnap() && gridView != null && dragComponent.SnapToAnchor(grid))
                 {
-                    this.CommitLanding(grid, gridView, draggingPuzzle, puzzleView);
+                    this.CommitLanding(grid, puzzleView);
                 }
                 else
                 {
@@ -68,22 +70,19 @@ namespace ET.Client
             int anchorY = Mathf.RoundToInt(gridCoordinate.y);
             if (grid.Contains(anchorX, anchorY) && dragComponent.SnapToAnchor(grid, anchorX, anchorY))
             {
-                this.CommitLanding(grid, gridView, draggingPuzzle, puzzleView);
+                this.CommitLanding(grid, puzzleView);
                 return;
             }
 
             dragComponent.RestoreInitialPosition();
         }
 
-        /// <summary>在最终落位成功后播放反馈并检测通关</summary>
-        private void CommitLanding(Grid grid, GridView gridView, Puzzle puzzle, PuzzleView puzzleView)
+        /// <summary>为本次落位的拼图播放特效，再检测关卡完成状态</summary>
+        /// <param name="grid">本次操作的棋盘</param>
+        /// <param name="puzzleView">本次成功落位的拼图表现</param>
+        private void CommitLanding(Grid grid, PuzzleView puzzleView)
         {
-            if (gridView.GameObject.TryGetComponent(out PuzzleGame.PlacementFeedback feedback))
-            {
-                Vector3 anchor = gridView.GetGridCoordinateWorldPosition(puzzle.AnchorX, puzzle.AnchorY);
-                Vector3 centerOffset = puzzleView.SpriteRenderer.bounds.center - puzzleView.GetOriginWorldPosition();
-                feedback.PlayLanding(anchor + centerOffset);
-            }
+            puzzleView.PlayPlacementEffect();
 
             grid.TryPublishCompletion();
         }

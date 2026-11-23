@@ -77,8 +77,10 @@ namespace ET.Client
     public class PointerCancel_ResetPuzzleInteraction : AEvent<Scene, PointerCancel>
     {
         /// <summary>
-        /// 恢复拖拽起点并释放当前交互目标，取消不触发落位或旋转
+        /// 取消拖拽时清除占格并回初始托盘和默认朝向，再释放交互目标
         /// </summary>
+        /// <param name="scene">当前关卡场景</param>
+        /// <param name="args">取消输入上下文</param>
         protected override async ETTask Run(Scene scene, PointerCancel args)
         {
             DragInteractionStateComponent interaction = scene.GetComponent<DragInteractionStateComponent>();

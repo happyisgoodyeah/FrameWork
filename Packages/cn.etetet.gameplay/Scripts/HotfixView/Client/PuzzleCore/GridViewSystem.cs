@@ -9,7 +9,7 @@ namespace ET.Client
     public static partial class GridViewSystem
     {
         /// <summary>
-        /// 创建棋盘表现并初始化主题环境
+        /// 创建棋盘结构并绑定坐标容器和碰撞体
         /// </summary>
         [EntitySystem]
         private static void Awake(this GridView self, GameObject prefab, Vector3 localPosition, float cellSize)
@@ -47,10 +47,6 @@ namespace ET.Client
             self.CompositeCollider2D = compositeCollider2D;
             self.CellSize = cellSize;
             self.BindEntityReference(instance);
-            if (instance.TryGetComponent(out PuzzleGame.LevelSceneArt art))
-            {
-                art.Configure(self.GetParent<Grid>().GridConfigId, puzzleSceneRoot.GameCamera);
-            }
             self.IsInitialized = true;
         }
 

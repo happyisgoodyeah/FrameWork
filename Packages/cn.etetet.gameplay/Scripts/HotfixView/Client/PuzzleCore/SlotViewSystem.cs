@@ -46,7 +46,7 @@ namespace ET.Client
         }
 
         /// <summary>
-        /// 为棋盘格创建外观和独立碰撞体，失败时由槽位生命周期释放实例
+        /// 按槽位预制体创建外观和独立碰撞体，由槽位生命周期释放实例
         /// </summary>
         private static void BindGridSlotView(this SlotView self, Slot slot, GameObject prefab)
         {
@@ -78,10 +78,6 @@ namespace ET.Client
             boxCollider2D.usedByComposite = false;
             self.Collider2D = boxCollider2D;
             self.BindEntityReference();
-            if (gridView.GameObject.TryGetComponent(out PuzzleGame.LevelSceneArt art))
-            {
-                art.ApplySlot(instance.transform, PuzzleCoreHelper.GetSlotConfig(slot.SlotConfigId).AllowPlace);
-            }
         }
 
         /// <summary>

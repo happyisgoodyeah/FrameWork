@@ -38,7 +38,10 @@
       1001,
       1001,
       1002
-    ]
+    ],
+    "ThemeScenePrefabPath": "LevelScenes/Animated/Environment1001",
+    "ThemeUIPrefabPath": "",
+    "PlacementEffectPrefabPath": "LevelScenes/Effects/PlacementCloud"
   },
   {
     "Id": 1002,
@@ -79,7 +82,10 @@
       1001,
       1001,
       1002
-    ]
+    ],
+    "ThemeScenePrefabPath": "LevelScenes/Animated/Environment1002",
+    "ThemeUIPrefabPath": "",
+    "PlacementEffectPrefabPath": "LevelScenes/Effects/PlacementCloud"
   },
   {
     "Id": 1003,
@@ -115,7 +121,10 @@
       1001,
       1001,
       1002
-    ]
+    ],
+    "ThemeScenePrefabPath": "LevelScenes/Animated/Environment1003",
+    "ThemeUIPrefabPath": "",
+    "PlacementEffectPrefabPath": "LevelScenes/Effects/PlacementCloud"
   },
   {
     "Id": 1004,
@@ -146,7 +155,10 @@
       1001,
       1001,
       1001
-    ]
+    ],
+    "ThemeScenePrefabPath": "",
+    "ThemeUIPrefabPath": "",
+    "PlacementEffectPrefabPath": "LevelScenes/Effects/PlacementCloud"
   },
   {
     "Id": 1005,
@@ -194,7 +206,10 @@
       1001,
       1001,
       1001
-    ]
+    ],
+    "ThemeScenePrefabPath": "",
+    "ThemeUIPrefabPath": "",
+    "PlacementEffectPrefabPath": "LevelScenes/Effects/PlacementCloud"
   },
   {
     "Id": 1006,
@@ -235,7 +250,10 @@
       1001,
       1001,
       1002
-    ]
+    ],
+    "ThemeScenePrefabPath": "",
+    "ThemeUIPrefabPath": "",
+    "PlacementEffectPrefabPath": "LevelScenes/Effects/PlacementCloud"
   },
   {
     "Id": 1007,
@@ -276,7 +294,10 @@
       1001,
       1001,
       1002
-    ]
+    ],
+    "ThemeScenePrefabPath": "",
+    "ThemeUIPrefabPath": "",
+    "PlacementEffectPrefabPath": "LevelScenes/Effects/PlacementCloud"
   },
   {
     "Id": 1008,
@@ -317,7 +338,10 @@
       1001,
       1001,
       1002
-    ]
+    ],
+    "ThemeScenePrefabPath": "",
+    "ThemeUIPrefabPath": "",
+    "PlacementEffectPrefabPath": "LevelScenes/Effects/PlacementCloud"
   },
   {
     "Id": 1009,
@@ -358,7 +382,10 @@
       1001,
       1001,
       1002
-    ]
+    ],
+    "ThemeScenePrefabPath": "",
+    "ThemeUIPrefabPath": "",
+    "PlacementEffectPrefabPath": "LevelScenes/Effects/PlacementCloud"
   },
   {
     "Id": 1010,
@@ -399,7 +426,10 @@
       1001,
       1001,
       1002
-    ]
+    ],
+    "ThemeScenePrefabPath": "",
+    "ThemeUIPrefabPath": "",
+    "PlacementEffectPrefabPath": "LevelScenes/Effects/PlacementCloud"
   },
   {
     "Id": 1011,
@@ -440,7 +470,10 @@
       1001,
       1001,
       1002
-    ]
+    ],
+    "ThemeScenePrefabPath": "",
+    "ThemeUIPrefabPath": "",
+    "PlacementEffectPrefabPath": "LevelScenes/Effects/PlacementCloud"
   },
   {
     "Id": 1012,
@@ -481,7 +514,10 @@
       1001,
       1001,
       1002
-    ]
+    ],
+    "ThemeScenePrefabPath": "",
+    "ThemeUIPrefabPath": "",
+    "PlacementEffectPrefabPath": "LevelScenes/Effects/PlacementCloud"
   },
   {
     "Id": 1013,
@@ -522,7 +558,10 @@
       1001,
       1001,
       1002
-    ]
+    ],
+    "ThemeScenePrefabPath": "",
+    "ThemeUIPrefabPath": "",
+    "PlacementEffectPrefabPath": "LevelScenes/Effects/PlacementCloud"
   },
   {
     "Id": 1014,
@@ -563,7 +602,10 @@
       1001,
       1001,
       1002
-    ]
+    ],
+    "ThemeScenePrefabPath": "",
+    "ThemeUIPrefabPath": "",
+    "PlacementEffectPrefabPath": "LevelScenes/Effects/PlacementCloud"
   },
   {
     "Id": 1015,
@@ -604,7 +646,10 @@
       1001,
       1001,
       1002
-    ]
+    ],
+    "ThemeScenePrefabPath": "",
+    "ThemeUIPrefabPath": "",
+    "PlacementEffectPrefabPath": "LevelScenes/Effects/PlacementCloud"
   },
   {
     "Id": 1016,
@@ -645,7 +690,10 @@
       1001,
       1001,
       1002
-    ]
+    ],
+    "ThemeScenePrefabPath": "",
+    "ThemeUIPrefabPath": "",
+    "PlacementEffectPrefabPath": "LevelScenes/Effects/PlacementCloud"
   },
   {
     "Id": 1017,
@@ -686,7 +734,10 @@
       1001,
       1001,
       1002
-    ]
+    ],
+    "ThemeScenePrefabPath": "",
+    "ThemeUIPrefabPath": "",
+    "PlacementEffectPrefabPath": "LevelScenes/Effects/PlacementCloud"
   },
   {
     "Id": 1018,
@@ -727,7 +778,10 @@
       1001,
       1001,
       1002
-    ]
+    ],
+    "ThemeScenePrefabPath": "",
+    "ThemeUIPrefabPath": "",
+    "PlacementEffectPrefabPath": "LevelScenes/Effects/PlacementCloud"
   },
   {
     "Id": 1019,
@@ -768,7 +822,10 @@
       1001,
       1001,
       1002
-    ]
+    ],
+    "ThemeScenePrefabPath": "",
+    "ThemeUIPrefabPath": "",
+    "PlacementEffectPrefabPath": "LevelScenes/Effects/PlacementCloud"
   },
   {
     "Id": 1020,
@@ -809,746 +866,9 @@
       1001,
       1001,
       1002
-    ]
-  },
-  {
-    "Id": 1101,
-    "Name": "动物 · 第一关",
-    "X": 3,
-    "Y": 3,
-    "PuzzleCount": 4,
-    "PrefabPath": "Grid/GridWordless",
-    "PuzzleList": [
-      {
-        "Id": 1104,
-        "Tray": 0,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1103,
-        "Tray": 0,
-        "SlotIndex": 1
-      },
-      {
-        "Id": 1104,
-        "Tray": 1,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 1
-      }
     ],
-    "SlotList": [
-      1001,
-      1001,
-      1001,
-      1001,
-      1001,
-      1001,
-      1001,
-      1001,
-      1002
-    ]
-  },
-  {
-    "Id": 1102,
-    "Name": "动物 · 第二关",
-    "X": 3,
-    "Y": 3,
-    "PuzzleCount": 3,
-    "PrefabPath": "Grid/GridWordless",
-    "PuzzleList": [
-      {
-        "Id": 1101,
-        "Tray": 0,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 1
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 0
-      }
-    ],
-    "SlotList": [
-      1001,
-      1001,
-      1001,
-      1002,
-      1001,
-      1002,
-      1002,
-      1001,
-      1002
-    ]
-  },
-  {
-    "Id": 1103,
-    "Name": "动物 · 第三关",
-    "X": 3,
-    "Y": 3,
-    "PuzzleCount": 3,
-    "PrefabPath": "Grid/GridWordless",
-    "PuzzleList": [
-      {
-        "Id": 1101,
-        "Tray": 0,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 1
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 0
-      }
-    ],
-    "SlotList": [
-      1001,
-      1002,
-      1002,
-      1001,
-      1002,
-      1002,
-      1001,
-      1001,
-      1001
-    ]
-  },
-  {
-    "Id": 1104,
-    "Name": "动物 · 第四关",
-    "X": 3,
-    "Y": 3,
-    "PuzzleCount": 3,
-    "PrefabPath": "Grid/Grid1001",
-    "PuzzleList": [
-      {
-        "Id": 1101,
-        "Tray": 0,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 1
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 0
-      }
-    ],
-    "SlotList": [
-      1002,
-      1001,
-      1002,
-      1001,
-      1001,
-      1001,
-      1002,
-      1001,
-      1002
-    ]
-  },
-  {
-    "Id": 1105,
-    "Name": "动物 · 第五关",
-    "X": 3,
-    "Y": 3,
-    "PuzzleCount": 2,
-    "PrefabPath": "Grid/Grid1001",
-    "PuzzleList": [
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1102,
-        "Tray": 1,
-        "SlotIndex": 0
-      }
-    ],
-    "SlotList": [
-      1001,
-      1001,
-      1002,
-      1001,
-      1001,
-      1002,
-      1001,
-      1001,
-      1002
-    ]
-  },
-  {
-    "Id": 1106,
-    "Name": "动物 · 第六关",
-    "X": 3,
-    "Y": 3,
-    "PuzzleCount": 2,
-    "PrefabPath": "Grid/Grid1001",
-    "PuzzleList": [
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1102,
-        "Tray": 1,
-        "SlotIndex": 0
-      }
-    ],
-    "SlotList": [
-      1001,
-      1001,
-      1001,
-      1002,
-      1002,
-      1002,
-      1001,
-      1001,
-      1001
-    ]
-  },
-  {
-    "Id": 1107,
-    "Name": "动物 · 第七关",
-    "X": 3,
-    "Y": 3,
-    "PuzzleCount": 3,
-    "PrefabPath": "Grid/Grid1001",
-    "PuzzleList": [
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 1
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 0
-      }
-    ],
-    "SlotList": [
-      1001,
-      1002,
-      1001,
-      1001,
-      1001,
-      1001,
-      1001,
-      1002,
-      1001
-    ]
-  },
-  {
-    "Id": 1108,
-    "Name": "动物 · 第八关",
-    "X": 3,
-    "Y": 3,
-    "PuzzleCount": 3,
-    "PrefabPath": "Grid/Grid1001",
-    "PuzzleList": [
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 1
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 0
-      }
-    ],
-    "SlotList": [
-      1001,
-      1002,
-      1001,
-      1001,
-      1002,
-      1001,
-      1001,
-      1001,
-      1001
-    ]
-  },
-  {
-    "Id": 1109,
-    "Name": "动物 · 第九关",
-    "X": 3,
-    "Y": 3,
-    "PuzzleCount": 3,
-    "PrefabPath": "Grid/Grid1001",
-    "PuzzleList": [
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 1
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 0
-      }
-    ],
-    "SlotList": [
-      1001,
-      1001,
-      1001,
-      1001,
-      1002,
-      1002,
-      1001,
-      1001,
-      1001
-    ]
-  },
-  {
-    "Id": 1110,
-    "Name": "动物 · 第十关",
-    "X": 3,
-    "Y": 3,
-    "PuzzleCount": 3,
-    "PrefabPath": "Grid/Grid1001",
-    "PuzzleList": [
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 1
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 0
-      }
-    ],
-    "SlotList": [
-      1001,
-      1001,
-      1001,
-      1002,
-      1001,
-      1002,
-      1001,
-      1001,
-      1001
-    ]
-  },
-  {
-    "Id": 1111,
-    "Name": "动物 · 第十一关",
-    "X": 3,
-    "Y": 3,
-    "PuzzleCount": 4,
-    "PrefabPath": "Grid/Grid1001",
-    "PuzzleList": [
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 1
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 1
-      }
-    ],
-    "SlotList": [
-      1001,
-      1001,
-      1001,
-      1001,
-      1002,
-      1001,
-      1001,
-      1001,
-      1001
-    ]
-  },
-  {
-    "Id": 1112,
-    "Name": "动物 · 第十二关",
-    "X": 3,
-    "Y": 3,
-    "PuzzleCount": 4,
-    "PrefabPath": "Grid/Grid1001",
-    "PuzzleList": [
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 1
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 1
-      }
-    ],
-    "SlotList": [
-      1001,
-      1001,
-      1001,
-      1001,
-      1001,
-      1002,
-      1001,
-      1001,
-      1001
-    ]
-  },
-  {
-    "Id": 1113,
-    "Name": "动物 · 第十三关",
-    "X": 3,
-    "Y": 3,
-    "PuzzleCount": 4,
-    "PrefabPath": "Grid/Grid1001",
-    "PuzzleList": [
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 1
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 1
-      }
-    ],
-    "SlotList": [
-      1002,
-      1001,
-      1001,
-      1001,
-      1001,
-      1001,
-      1001,
-      1001,
-      1001
-    ]
-  },
-  {
-    "Id": 1114,
-    "Name": "动物 · 第十四关",
-    "X": 3,
-    "Y": 3,
-    "PuzzleCount": 4,
-    "PrefabPath": "Grid/Grid1001",
-    "PuzzleList": [
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 1
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 1
-      }
-    ],
-    "SlotList": [
-      1001,
-      1001,
-      1001,
-      1001,
-      1001,
-      1001,
-      1002,
-      1001,
-      1001
-    ]
-  },
-  {
-    "Id": 1115,
-    "Name": "动物 · 第十五关",
-    "X": 3,
-    "Y": 3,
-    "PuzzleCount": 3,
-    "PrefabPath": "Grid/Grid1001",
-    "PuzzleList": [
-      {
-        "Id": 1101,
-        "Tray": 0,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 1
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 0
-      }
-    ],
-    "SlotList": [
-      1001,
-      1001,
-      1002,
-      1002,
-      1001,
-      1002,
-      1002,
-      1001,
-      1001
-    ]
-  },
-  {
-    "Id": 1116,
-    "Name": "动物 · 第十六关",
-    "X": 3,
-    "Y": 3,
-    "PuzzleCount": 3,
-    "PrefabPath": "Grid/Grid1001",
-    "PuzzleList": [
-      {
-        "Id": 1101,
-        "Tray": 0,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 1
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 0
-      }
-    ],
-    "SlotList": [
-      1001,
-      1001,
-      1001,
-      1002,
-      1002,
-      1001,
-      1002,
-      1002,
-      1001
-    ]
-  },
-  {
-    "Id": 1117,
-    "Name": "动物 · 第十七关",
-    "X": 3,
-    "Y": 3,
-    "PuzzleCount": 3,
-    "PrefabPath": "Grid/Grid1001",
-    "PuzzleList": [
-      {
-        "Id": 1101,
-        "Tray": 0,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 1
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 0
-      }
-    ],
-    "SlotList": [
-      1002,
-      1001,
-      1002,
-      1002,
-      1001,
-      1002,
-      1001,
-      1001,
-      1001
-    ]
-  },
-  {
-    "Id": 1118,
-    "Name": "动物 · 第十八关",
-    "X": 3,
-    "Y": 3,
-    "PuzzleCount": 3,
-    "PrefabPath": "Grid/Grid1001",
-    "PuzzleList": [
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 1
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 0
-      }
-    ],
-    "SlotList": [
-      1001,
-      1001,
-      1001,
-      1001,
-      1002,
-      1001,
-      1001,
-      1002,
-      1001
-    ]
-  },
-  {
-    "Id": 1119,
-    "Name": "动物 · 第十九关",
-    "X": 3,
-    "Y": 3,
-    "PuzzleCount": 4,
-    "PrefabPath": "Grid/Grid1001",
-    "PuzzleList": [
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 1
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1101,
-        "Tray": 1,
-        "SlotIndex": 1
-      }
-    ],
-    "SlotList": [
-      1001,
-      1001,
-      1001,
-      1002,
-      1001,
-      1001,
-      1001,
-      1001,
-      1001
-    ]
-  },
-  {
-    "Id": 1120,
-    "Name": "动物 · 第二十关",
-    "X": 3,
-    "Y": 3,
-    "PuzzleCount": 3,
-    "PrefabPath": "Grid/Grid1001",
-    "PuzzleList": [
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 0
-      },
-      {
-        "Id": 1102,
-        "Tray": 0,
-        "SlotIndex": 1
-      },
-      {
-        "Id": 1102,
-        "Tray": 1,
-        "SlotIndex": 0
-      }
-    ],
-    "SlotList": [
-      1001,
-      1001,
-      1001,
-      1001,
-      1001,
-      1001,
-      1001,
-      1001,
-      1001
-    ]
+    "ThemeScenePrefabPath": "",
+    "ThemeUIPrefabPath": "",
+    "PlacementEffectPrefabPath": "LevelScenes/Effects/PlacementCloud"
   }
 ]

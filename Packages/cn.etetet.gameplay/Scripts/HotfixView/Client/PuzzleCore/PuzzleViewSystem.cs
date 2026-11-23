@@ -56,6 +56,7 @@ namespace ET.Client
             self.DisableSlotAnchorColliders();
             self.MoveMode = PuzzleMoveMode.FreeFollow;
             self.RotationTween = null;
+            self.PlacementEffectObject = null;
             self.BindEntityReference(instance);
             self.RefreshRotation();
             self.RestoreVisualPriority();
@@ -114,6 +115,7 @@ namespace ET.Client
         {
             self.IsInitialized = false;
             self.KillRotationTween();
+            self.PlacementEffectObject = null;
             if (self.GameObject == null)
             {
                 return;
@@ -121,6 +123,33 @@ namespace ET.Client
 
             self.GameObject.SetActive(false);
             UnityEngine.Object.Destroy(self.GameObject);
+        }
+
+        /// <summary>仅在本次成功落位的拼图上生成关卡配置指定的特效</summary>
+        /// <param name="self">本次落位的拼图表现</param>
+        public static void PlayPlacementEffect(this PuzzleView self)
+        {
+            LevelView levelView = self.GetParent<Puzzle>().GetParent<Grid>().GetComponent<LevelView>();
+            if (levelView.PlacementEffectPrefab == null) return;
+            if (self.PlacementEffectObject != null) UnityEngine.Object.Destroy(self.PlacementEffectObject);
+            self.PlacementEffectObject = UnityEngine.Object.Instantiate(levelView.PlacementEffectPrefab, self.Transform, false);
+            self.PlacementEffectObject.transform.position = self.SpriteRenderer.bounds.center;
+            levelView.LastPlacementView = self;
+        }
+
+        /// <summary>等待当前拼图的落位特效结束，拼图释放时停止等待</summary>
+        /// <param name="self">最后一块落位的拼图表现</param>
+        public static async ETTask WaitForPlacementEffectAsync(this PuzzleView self)
+        {
+            EntityRef<PuzzleView> selfRef = self;
+            TimerComponent timer = self.Root().GetComponent<TimerComponent>();
+            GameObject effect = self.PlacementEffectObject;
+            while (effect != null && effect.GetComponent<PuzzleGame.PlacementEffectPlayer>().IsPlaying)
+            {
+                await timer.WaitFrameAsync();
+                self = selfRef;
+                if (self == null) return;
+            }
         }
 
         /// <summary>

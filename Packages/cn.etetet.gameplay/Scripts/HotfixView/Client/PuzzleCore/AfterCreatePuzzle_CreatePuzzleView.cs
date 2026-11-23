@@ -28,12 +28,7 @@ namespace ET.Client
             }
 
             UnityEngine.Vector3 worldPosition = PuzzleTrayHelper.ResolveTrayWorldPosition(scene, puzzle);
-            PuzzleView view = puzzle.AddComponent<PuzzleView, UnityEngine.GameObject, UnityEngine.Vector3>(prefab, worldPosition);
-            if (puzzle.PuzzleConfigId == PuzzleCoreConst.BasketChickConfigId)
-            {
-                puzzle.GetParent<Grid>().GetComponent<GridView>().GameObject.GetComponent<PuzzleGame.LevelOneBasketReveal>()?
-                    .RegisterChick(view.GameObject);
-            }
+            puzzle.AddComponent<PuzzleView, UnityEngine.GameObject, UnityEngine.Vector3>(prefab, worldPosition);
 
             if (puzzle.GetComponent<PuzzleDragComponent>() == null)
             {

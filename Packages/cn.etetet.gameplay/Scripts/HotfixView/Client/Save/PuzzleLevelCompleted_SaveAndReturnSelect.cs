@@ -1,13 +1,13 @@
 namespace ET.Client
 {
     /// <summary>
-    /// 关卡完成后保存进度并回到关卡选择
+    /// 关卡完成后保存进度，成功后回到关卡选择
     /// </summary>
     [Event(SceneType.Current)]
     public class PuzzleLevelCompleted_SaveAndReturnSelect : AEvent<Scene, PuzzleLevelCompleted>
     {
         /// <summary>
-        /// 保存通关状态并等待落位反馈，取消或切场景后不再跳转界面
+        /// 保存失败时记录错误并保留当前关卡，成功后等待落位反馈再返回选关
         /// </summary>
         /// <param name="scene">当前关卡逻辑场景</param>
         /// <param name="args">关卡完成事件</param>
@@ -16,12 +16,22 @@ namespace ET.Client
             EntityRef<Grid> completedGrid = args.Grid;
             EntityRef<Scene> sceneRef = scene;
             Scene root = scene.Root();
-            bool hasLandingFeedback = args.Grid.GetComponent<GridView>().GameObject.GetComponent<PuzzleGame.PlacementFeedback>() != null;
-            long completedAt = TimeInfo.Instance.ClientFrameTime();
-            SaveResult saveResult = await GameplaySaveHelper.CompleteLevelAsync(root.GetComponent<SaveManagerComponent>(), args.GridConfigId);
+            EntityRef<PuzzleView> landingViewRef = args.Grid.GetComponent<LevelView>().LastPlacementView;
+            SaveResult saveResult;
+            try
+            {
+                saveResult = await GameplaySaveHelper.CompleteLevelAsync(root.GetComponent<SaveManagerComponent>(), args.GridConfigId);
+            }
+            catch (System.Exception exception)
+            {
+                Log.Error($"保存关卡完成与图鉴解锁异常: gridConfigId={args.GridConfigId} {exception}");
+                return;
+            }
+
             if (saveResult != SaveResult.Success)
             {
-                Log.Error($"保存关卡完成与图鉴解锁失败: {saveResult}");
+                Log.Error($"保存关卡完成与图鉴解锁失败: gridConfigId={args.GridConfigId} result={saveResult}");
+                return;
             }
 
             scene = sceneRef;
@@ -31,10 +41,10 @@ namespace ET.Client
                 return;
             }
 
-            long remaining = PuzzleGame.PlacementFeedback.LandingDurationMilliseconds - (TimeInfo.Instance.ClientFrameTime() - completedAt);
-            if (hasLandingFeedback && remaining > 0)
+            PuzzleView landingView = landingViewRef;
+            if (landingView != null)
             {
-                await scene.Root().GetComponent<TimerComponent>().WaitAsync(remaining);
+                await landingView.WaitForPlacementEffectAsync();
             }
 
             scene = sceneRef;

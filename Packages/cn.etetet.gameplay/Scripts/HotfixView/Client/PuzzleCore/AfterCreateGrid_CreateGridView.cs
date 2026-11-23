@@ -9,7 +9,7 @@ namespace ET.Client
         private const long SceneReadyTimeoutMilliseconds = 30000;
 
         /// <summary>
-        /// 等待 Unity 场景就绪后加载 GridView，取消时不再创建表现
+        /// 等待 Unity 场景就绪后创建棋盘表现并加载配表指定的关卡主题
         /// </summary>
         protected override async ETTask Run(Scene scene, AfterCreateGrid args)
         {
@@ -48,6 +48,7 @@ namespace ET.Client
             }
 
             grid.AddComponent<GridView, UnityEngine.GameObject, UnityEngine.Vector3, float>(prefab, UnityEngine.Vector3.zero, PuzzleLayoutConst.GridCellSize);
+            await grid.AddComponent<LevelView>().LoadAsync(gridConfig);
         }
     }
 
@@ -68,8 +69,9 @@ namespace ET.Client
             {
                 case Grid grid:
                     GridView gridView = grid.GetComponent<GridView>();
+                    LevelView levelView = grid.GetComponent<LevelView>();
                     ready = gridView != null && gridView.IsInitialized && gridView.GameObject != null && gridView.PuzzleRoot != null &&
-                        gridView.SlotRoot != null && gridView.CompositeCollider2D != null;
+                        gridView.SlotRoot != null && gridView.CompositeCollider2D != null && levelView != null && levelView.IsInitialized;
                     break;
                 case Puzzle puzzle:
                     PuzzleView puzzleView = puzzle.GetComponent<PuzzleView>();

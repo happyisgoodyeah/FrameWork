@@ -305,7 +305,7 @@ namespace ET.Client
             }
 
             /// <summary>
-            /// 从 Grid.xlsx、Slot.xlsx 和 Puzzle.xlsx 反建当前关卡
+            /// 从配表反建棋盘布局，并按托盘编号和槽位序号定位拼图
             /// </summary>
             /// <param name="authoring">目标 Grid 标记</param>
             private static void GenerateLevelFromWorkbook(GridConfigAuthoring authoring)
@@ -340,7 +340,10 @@ namespace ET.Client
                     PuzzleConfigRecord puzzleConfig = tables.GetPuzzle(puzzleInfo.Id);
                     GameObject puzzlePrefab = LoadPrefab(puzzleConfig.PrefabPath);
                     GameObject puzzleInstance = InstantiatePrefab(puzzlePrefab, puzzleRoot, $"Puzzle_{index + 1}_{puzzleInfo.Id}");
-                    puzzleInstance.transform.localPosition = puzzleInfo.LocalPosition;
+                    int trayCount = gridConfig.Puzzles.Count(p => p.Tray == puzzleInfo.Tray);
+                    float x = puzzleInfo.Tray == PuzzleLayoutConst.TrayLeft ? -PuzzleLayoutConst.TrayWorldX : PuzzleLayoutConst.TrayWorldX;
+                    float y = ((trayCount - 1) * 0.5f - puzzleInfo.SlotIndex) * PuzzleLayoutConst.TraySlotPitch;
+                    puzzleInstance.transform.localPosition = new Vector3(x, y, 0);
                 }
 
                 EditorUtility.SetDirty(authoring.gameObject);
@@ -384,7 +387,7 @@ namespace ET.Client
             }
 
             /// <summary>
-            /// 收集当前 Grid 下的 Slot 和 Puzzle 数据
+            /// 收集棋盘格和左右托盘中的拼图，槽位序号按从上到下确定
             /// </summary>
             /// <param name="authoring">目标 Grid 标记</param>
             /// <returns>Grid 导出数据</returns>
@@ -435,19 +438,26 @@ namespace ET.Client
                 }
 
                 List<GridPuzzleExportData> puzzles = new List<GridPuzzleExportData>();
-                for (int i = 0; i < puzzleRoot.childCount; ++i)
+                List<Transform> puzzleTransforms = new List<Transform>();
+                for (int i = 0; i < puzzleRoot.childCount; ++i) puzzleTransforms.Add(puzzleRoot.GetChild(i));
+                foreach (Transform child in puzzleTransforms.OrderBy(t => t.localPosition.x < 0 ? PuzzleLayoutConst.TrayLeft : PuzzleLayoutConst.TrayRight).ThenByDescending(t => t.localPosition.y))
                 {
-                    Transform child = puzzleRoot.GetChild(i);
                     PuzzleConfigAuthoring puzzleAuthoring = child.GetComponent<PuzzleConfigAuthoring>();
                     if (puzzleAuthoring == null)
                     {
                         throw new InvalidOperationException($"Puzzle 子节点缺少 PuzzleConfigAuthoring: {child.name}");
                     }
 
+                    if (Mathf.Abs(child.localPosition.x) <= CoordinateTolerance)
+                    {
+                        throw new InvalidOperationException($"Puzzle 必须放在左侧或右侧托盘: {child.name}");
+                    }
+                    int tray = child.localPosition.x < 0 ? PuzzleLayoutConst.TrayLeft : PuzzleLayoutConst.TrayRight;
                     puzzles.Add(new GridPuzzleExportData()
                     {
                             Id = puzzleAuthoring.GetConfigId(),
-                            LocalPosition = child.localPosition,
+                            Tray = tray,
+                            SlotIndex = puzzles.Count(p => p.Tray == tray),
                     });
                 }
 
@@ -484,7 +494,7 @@ namespace ET.Client
             }
 
             /// <summary>
-            /// 构建 Grid 配表中的单行列值
+            /// 构建布局列值，主题和特效路径列由配表维护且不参与复制
             /// </summary>
             /// <param name="includeMarkerColumn">是否包含 Luban 标记空列</param>
             /// <param name="exportData">Grid 导出数据</param>
@@ -517,13 +527,12 @@ namespace ET.Client
                 if (puzzle != null)
                 {
                     columns.Add(FormatInt(puzzle.Id));
-                    columns.Add(FormatFloat(puzzle.LocalPosition.x));
-                    columns.Add(FormatFloat(puzzle.LocalPosition.y));
-                    columns.Add(FormatFloat(puzzle.LocalPosition.z));
+                    columns.Add(FormatInt(puzzle.Tray));
+                    columns.Add(FormatInt(puzzle.SlotIndex));
                 }
                 else
                 {
-                    columns.AddRange(new[] { string.Empty, string.Empty, string.Empty, string.Empty });
+                    columns.AddRange(new[] { string.Empty, string.Empty, string.Empty });
                 }
 
                 columns.Add(isFirstRow ? slotListText : string.Empty);
@@ -1035,7 +1044,7 @@ namespace ET.Client
             }
 
             /// <summary>
-            /// 读取 Grid 行块中的 PuzzleList
+            /// 读取 Grid 行块中的拼图类型、托盘编号和槽位序号
             /// </summary>
             /// <param name="sheet">工作表</param>
             /// <param name="startRow">起始行</param>
@@ -1056,10 +1065,8 @@ namespace ET.Client
                     puzzles.Add(new GridPuzzleRecord()
                     {
                             Id = puzzleId,
-                            LocalPosition = new Vector3(
-                                    ParseOptionalFloat(sheet.GetCell(row, puzzleStartColumn + 1)),
-                                    ParseOptionalFloat(sheet.GetCell(row, puzzleStartColumn + 2)),
-                                    ParseOptionalFloat(sheet.GetCell(row, puzzleStartColumn + 3))),
+                            Tray = ParseRequiredInt(sheet.GetCell(row, puzzleStartColumn + 1), $"Puzzle {puzzleId} Tray"),
+                            SlotIndex = ParseRequiredInt(sheet.GetCell(row, puzzleStartColumn + 2), $"Puzzle {puzzleId} SlotIndex"),
                     });
                 }
 
@@ -1463,7 +1470,8 @@ namespace ET.Client
         private sealed class GridPuzzleRecord
         {
             public int Id;
-            public Vector3 LocalPosition;
+            public int Tray;
+            public int SlotIndex;
         }
 
         private sealed class GridExportData
@@ -1480,7 +1488,8 @@ namespace ET.Client
         private sealed class GridPuzzleExportData
         {
             public int Id;
-            public Vector3 LocalPosition;
+            public int Tray;
+            public int SlotIndex;
         }
 #endif
     }

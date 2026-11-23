@@ -62,5 +62,8 @@ namespace ET.Client
         /// 当前用于驱动拼图旋转表现的 Tween。
         /// </summary>
         public Tweener RotationTween { get; set; }
+
+        /// <summary>本次落位在当前拼图上创建的特效实例</summary>
+        public GameObject PlacementEffectObject { get; set; }
     }
 }

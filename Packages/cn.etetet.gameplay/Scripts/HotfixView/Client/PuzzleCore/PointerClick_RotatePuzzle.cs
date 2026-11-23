@@ -1,3 +1,5 @@
+using DG.Tweening;
+
 namespace ET.Client
 {
     /// <summary>
@@ -7,8 +9,10 @@ namespace ET.Client
     public class PointerClick_RotatePuzzle : AEvent<Scene, PointerClick>
     {
         /// <summary>
-        /// 在关卡就绪时处理拼图旋转或篮筐点击
+        /// 在关卡就绪且没有拖拽手势时尝试旋转静止拼图
         /// </summary>
+        /// <param name="scene">当前关卡场景</param>
+        /// <param name="args">点击输入上下文</param>
         protected override async ETTask Run(Scene scene, PointerClick args)
         {
             Grid grid = scene.GetGrid();
@@ -30,24 +34,26 @@ namespace ET.Client
             {
                 this.TryRotatePuzzle(scene, puzzle);
             }
-            else
-            {
-                grid.GetComponent<GridView>().GameObject.GetComponent<PuzzleGame.LevelOneBasketReveal>()?
-                    .TryClick(args.Context.PressWorldPosition, args.Context.WorldPosition);
-            }
 
             await ETTask.CompletedTask;
         }
 
         /// <summary>
-        /// 执行一次 Puzzle 点击旋转，并在已放置时校验旋转后的合法性。
+        /// 仅在拼图未拖拽且移动已结束时执行旋转，并校验已放置拼图的合法性
         /// </summary>
-        /// <param name="scene">当前场景。</param>
-        /// <param name="puzzle">要旋转的 Puzzle。</param>
+        /// <param name="scene">当前场景</param>
+        /// <param name="puzzle">要旋转的 Puzzle</param>
         private void TryRotatePuzzle(Scene scene, Puzzle puzzle)
         {
             PuzzleView puzzleView = puzzle.GetComponent<PuzzleView>();
-            if (puzzleView == null)
+            PuzzleDragComponent dragComponent = puzzle.GetComponent<PuzzleDragComponent>();
+            if (puzzleView == null || dragComponent == null)
+            {
+                return;
+            }
+
+            if (dragComponent.IsDragging ||
+                (dragComponent.MoveTween != null && dragComponent.MoveTween.IsActive() && !dragComponent.MoveTween.IsComplete()))
             {
                 return;
             }

@@ -245,22 +245,41 @@ namespace ET.Client
         }
 
         /// <summary>
-        /// 将当前拼图恢复到本次拖拽开始前的状态和位置。
+        /// 恢复本次拖拽前的摆放和棋盘占用，再将表现移回原位置
         /// </summary>
-        /// <param name="self">当前拼图的拖拽组件。</param>
+        /// <param name="self">当前拼图的拖拽组件</param>
+        /// <exception cref="System.InvalidOperationException">原摆放无法恢复时暴露状态冲突</exception>
         public static void RestoreDragStart(this PuzzleDragComponent self)
         {
             Puzzle puzzle = self.GetParent<Puzzle>();
+            Grid grid = puzzle.GetParent<Grid>();
             self.ClearPreviewPlacementReservation();
-            puzzle.State = self.DragStartState;
-            puzzle.AnchorX = self.DragStartAnchorX;
-            puzzle.AnchorY = self.DragStartAnchorY;
+            if (self.DragStartState == PuzzleState.Placed)
+            {
+                if (!puzzle.TryPlaceOnGrid(grid, self.DragStartAnchorX, self.DragStartAnchorY))
+                {
+                    throw new System.InvalidOperationException($"can not restore puzzle placement: id={puzzle.Id} anchor=({self.DragStartAnchorX}, {self.DragStartAnchorY})");
+                }
+            }
+            else
+            {
+                puzzle.State = self.DragStartState;
+                puzzle.SetAnchor(self.DragStartAnchorX, self.DragStartAnchorY);
+            }
 
             PuzzleView puzzleView = puzzle.GetComponent<PuzzleView>();
             if (puzzleView != null && puzzleView.Transform != null)
             {
                 puzzleView.RestoreVisualPriority();
-                self.PlayMoveTween(puzzleView, self.DragStartWorldPosition, SettleTweenDuration, Ease.OutCubic);
+                if (self.DragStartState == PuzzleState.Placed)
+                {
+                    GridView gridView = grid.GetComponent<GridView>();
+                    self.PlayMoveTweenToOrigin(puzzleView, gridView.GetGridCoordinateWorldPosition(self.DragStartAnchorX, self.DragStartAnchorY), SettleTweenDuration, Ease.OutCubic);
+                }
+                else
+                {
+                    self.PlayMoveTween(puzzleView, self.DragStartWorldPosition, SettleTweenDuration, Ease.OutCubic);
+                }
             }
 
             self.ClearDragState();

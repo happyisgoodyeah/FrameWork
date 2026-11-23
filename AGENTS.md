@@ -18,8 +18,8 @@
   - `ET/YIUI 自动化工具`
   - `ET/YIUI Luban 配置工具`
 - 当前 `GlobalConfig.asset`:
-  - `CodeMode = ClientServer`
-  - `SceneName = StateSync`
+  - `CodeMode = Client`
+  - `SceneName = Game`
   - `Address = 127.0.0.1:10101`
 - F6 后热更 DLL 会刷新到 `Packages/cn.etetet.loader/Bundles/Code`
 - 中间输出目录: `Temp/Bin/Debug`
@@ -29,14 +29,13 @@
 
 - `Packages/cn.etetet.core`: ET 核心实体、事件、Fiber、网络、序列化
 - `Packages/cn.etetet.loader`: Unity 入口、CodeLoader、编译/构建、CodeMode
-- `Packages/cn.etetet.statesync`: ET 示例业务
+- `Packages/cn.etetet.startbase`: 四层宿主程序集、单机启动装配与客户端子场景机制
 - `Packages/cn.etetet.yiuiframework`: YIUI 运行时与工具
 - `Packages/cn.etetet.yiuiyooassets`: YIUI 与 YooAssets 桥接
 - `Packages/cn.etetet.yiuiluban`: Luban 工具链
 - `Packages/cn.etetet.yiuilubangen`: Luban 生成产物与加载实现
-- `Packages/cn.etetet.yiuistatesync`: 当前主要 UI 示例业务
-- `Packages/gamebase`: 项目基础层，放可复用、可迁移到其他项目的基础代码
-- `Packages/gameplay`: 项目业务层，放当前项目专属玩法、流程、界面与业务逻辑
+- `Packages/cn.etetet.gamebase`: 项目基础层，放可复用、可迁移到其他项目的基础代码
+- `Packages/cn.etetet.gameplay`: 当前拼图玩法、流程、界面与业务逻辑
 
 ## ET 设计规则
 
@@ -151,13 +150,14 @@
 - `ET.Entry.Start()` -> 创建主 Fiber
 - `FiberInit_Main` -> 发布 `EntryEvent1/2/3`
 - 当前根场景由 `Options.Instance.SceneName` 决定
-- 当前默认是 `StateSync`
-- `EntryEvent3_InitClient` 会挂:
+- 当前默认是 `Game`
+- `EntryEvent3_InitStartBaseClient` 会挂:
   - `GlobalComponent`
   - `ResourcesLoaderComponent`
-  - `PlayerComponent`
   - `CurrentScenesComponent`
+  - `SaveManagerComponent`
   - `YIUIMgrComponent`
+- 基础装配完成后发布 `AppStartInitFinish`，由 `gameplay` 加载玩法存档、准备 `Test` Unity 场景并打开主界面
 - ET 的 `Scene` 是 ET 数据树中的逻辑场景实体，不是 Unity 场景对象
 - Unity 的 `Scene` 属于 `UnityEngine.SceneManagement`
 - 需要获取 `Transform`、`GameObject`、场景根节点时，必须显式通过 Unity 场景 API 或场景桥接组件处理
@@ -245,13 +245,13 @@
 
 ## 修改建议
 
-- 后续新增代码优先落在 `Packages/gamebase` 或 `Packages/gameplay`
-- 可复用的基础能力、通用组件、基础工具、基础框架扩展放 `Packages/gamebase`
-- 当前项目专属玩法、业务流程、业务 UI、项目定制配置放 `Packages/gameplay`
+- 后续新增代码优先落在 `Packages/cn.etetet.gamebase` 或 `Packages/cn.etetet.gameplay`
+- 可复用的基础能力、通用组件、基础工具、基础框架扩展放 `Packages/cn.etetet.gamebase`
+- 当前项目专属玩法、业务流程、业务 UI、项目定制配置放 `Packages/cn.etetet.gameplay`
 - 纯 ET 业务: 放到业务包的 `Model / ModelView / Hotfix / HotfixView`
 - UI 业务: 用 YIUI 工具生成组件，手写逻辑放 `YIUISystem`
-- 扩展示例 UI: 优先在 `Packages/cn.etetet.yiuistatesync`
-- 正式项目业务: 更推荐新增独立业务包
+- 当前项目 UI: 放在 `Packages/cn.etetet.gameplay`，生成绑定与手写业务逻辑分别维护
+- 新玩法需要独立模块边界时，新增独立业务包
 
 ## 禁区
 
@@ -276,7 +276,7 @@
 
 ### UI 不显示
 
-1. 看 `EntryEvent3_InitClient` 是否执行
+1. 看 `EntryEvent3_InitStartBaseClient` 是否执行
 2. 看 `YIUIMgrComponent.Initialize()` 是否成功
 3. 看 `UIRoot` 是否存在或加载成功
 4. 看事件是否命中正确 `SceneType`
@@ -303,7 +303,9 @@
 - `Packages/cn.etetet.yiuilubangen/Scripts/Hotfix/Server/LubanServerLoaderInvoker.cs`
 - `Packages/cn.etetet.yiuilubangen/Scripts/HotfixView/Client/LubanClientLoaderInvoker.cs`
 - `Packages/cn.etetet.yiuiframework/Scripts/HotfixView/Client/System/UIMgr/YIUIMgrComponentSystem_Initialize.cs`
-- `Packages/cn.etetet.yiuistatesync/Scripts/HotfixView/Client/EntryEvent3_InitClient.cs`
+- `Packages/cn.etetet.startbase/Scripts/HotfixView/Client/EntryEvent3_InitStartBaseClient.cs`
+- `Packages/cn.etetet.startbase/Scripts/Hotfix/Client/LocalSceneHelper.cs`
+- `Packages/cn.etetet.gameplay/Scripts/HotfixView/Client/AppStartInitFinish_EnterPuzzle.cs`
 
 ## 一句话总结
 

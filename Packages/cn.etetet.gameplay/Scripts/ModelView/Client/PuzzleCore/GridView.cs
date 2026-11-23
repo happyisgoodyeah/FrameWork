@@ -8,7 +8,7 @@ namespace ET.Client
     [ComponentOf(typeof(Grid))]
     public class GridView : Entity, IAwake<GameObject, Vector3, float>, IDestroy
     {
-        /// <summary>棋盘场景结构和主题表现是否完整初始化</summary>
+        /// <summary>棋盘容器和碰撞结构是否完整初始化</summary>
         public bool IsInitialized { get; set; }
 
         /// <summary>
