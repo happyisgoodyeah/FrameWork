@@ -28,13 +28,16 @@ namespace PuzzleGame
             if (sceneCamera != null) FitCamera();
         }
 
-        /// <summary>按背景原始尺寸统一缩放主题内容，保持装饰与背景对齐</summary>
+        /// <summary>将整组美术缩放至覆盖视口，并把底图中心对准相机的视线。</summary>
         private void FitCamera()
         {
             Vector2 size = background.sprite.bounds.size;
             float height = sceneCamera.orthographicSize * 2;
-            float scale = Mathf.Max(height * sceneCamera.aspect / size.x, height / size.y);
-            contentRoot.localScale = Vector3.one * scale;
+            Vector3 scale = Vector3.one * Mathf.Max(height * sceneCamera.aspect / size.x, height / size.y);
+            if (contentRoot.localScale != scale) contentRoot.localScale = scale;
+            Vector3 toCamera = sceneCamera.transform.position - background.bounds.center;
+            Vector3 offset = Vector3.ProjectOnPlane(toCamera, sceneCamera.transform.forward);
+            if (offset != Vector3.zero) contentRoot.position += offset;
         }
     }
 }
