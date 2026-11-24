@@ -49,6 +49,8 @@ namespace ET.Client
             self.u_ComU_LevelCountText.SetText(displayIndex.ToString());
         }
 
+        #region YIUIEvent开始
+
         /// <summary>
         /// 进入当前关卡并切换到游戏视图
         /// </summary>
@@ -90,5 +92,7 @@ namespace ET.Client
                 GridConfigId = gridConfigId,
             });
         }
+
+        #endregion YIUIEvent结束
     }
 }

@@ -67,6 +67,8 @@ namespace ET.Client
             return true;
         }
 
+        #region YIUIEvent开始
+
         /// <summary>
         /// 放弃当前关卡并返回关卡选择
         /// </summary>
@@ -77,5 +79,7 @@ namespace ET.Client
             PuzzleLevelRuntimeHelper.ClearCurrentLevel(self.Root().CurrentScene());
             await self.YIUIRoot().OpenPanelAsync<GameMainPanelPanelComponent, EGameMainPanelPanelViewEnum>(EGameMainPanelPanelViewEnum.SelectLevelView);
         }
+
+        #endregion YIUIEvent结束
     }
 }

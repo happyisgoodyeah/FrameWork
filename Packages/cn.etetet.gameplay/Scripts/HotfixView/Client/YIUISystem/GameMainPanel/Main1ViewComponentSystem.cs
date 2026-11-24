@@ -42,6 +42,8 @@ namespace ET.Client
             return true;
         }
 
+        #region YIUIEvent开始
+
         /// <summary>
         /// 打开关卡选择视图
         /// </summary>
@@ -88,5 +90,7 @@ namespace ET.Client
 #endif
             await ETTask.CompletedTask;
         }
+
+        #endregion YIUIEvent结束
     }
 }

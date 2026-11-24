@@ -52,5 +52,8 @@ namespace ET.Client
             await self.UIPanel.OpenViewAsync<MainArchiveViewComponent>();
             return true;
         }
+
+        #region YIUIEvent开始
+        #endregion YIUIEvent结束
     }
 }
