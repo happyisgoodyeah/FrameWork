@@ -10,6 +10,7 @@ namespace ET.Client
     {
         public bool IsInitialized { get; set; }
         public GameObject SceneObject { get; set; }
+        public PuzzleGame.PuzzleRevealTrigger RevealTrigger { get; set; }
         public GameObject UIPrefab { get; set; }
         public GameObject UIObject { get; set; }
         public GameObject PlacementEffectPrefab { get; set; }

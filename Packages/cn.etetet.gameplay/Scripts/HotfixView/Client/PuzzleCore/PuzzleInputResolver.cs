@@ -15,6 +15,9 @@ namespace ET.Client
         /// </summary>
         public Puzzle Puzzle;
 
+        /// <summary>当前命中的场景解锁物件，同一物件可以有多个碰撞区域。</summary>
+        public PuzzleRevealComponent Reveal;
+
         /// <summary>
         /// 当前命中的 SlotView。
         /// </summary>
@@ -52,7 +55,7 @@ namespace ET.Client
     public static class PuzzleInputResolver
     {
         /// <summary>
-        /// 从通用输入上下文中筛选首个命中的 PuzzleView 与 SlotView。
+        /// 从当前指针位置解析拼图、格子和场景解锁物件。
         /// </summary>
         /// <param name="pointerContext">输入层发布的通用输入上下文。</param>
         /// <returns>当前命中的 PuzzleCore 解析结果。</returns>
@@ -73,7 +76,7 @@ namespace ET.Client
         }
 
         /// <summary>
-        /// 解析指定命中数组，玩法操作要求棋盘可交互，释放表现允许通关收尾
+        /// 从指定命中中解析拼图、格子和解锁物件，释放表现时允许访问已通关棋盘。
         /// </summary>
         /// <param name="hitResults">要解析的输入命中结果数组</param>
         /// <param name="requireInteractive">是否只接受可交互棋盘中的命中</param>
@@ -91,6 +94,12 @@ namespace ET.Client
                 Entity entity = hitResults[i].Entity;
                 if (entity == null)
                 {
+                    continue;
+                }
+
+                if (entity is PuzzleRevealComponent reveal)
+                {
+                    result.Reveal ??= reveal;
                     continue;
                 }
 
