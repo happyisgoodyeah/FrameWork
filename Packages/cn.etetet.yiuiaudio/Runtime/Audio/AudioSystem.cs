@@ -18,14 +18,14 @@ namespace ET
         private static readonly Dictionary<int, float> s_SoundVolumes = new();
 
         /// <summary>
-        /// 设置音量
+        /// 设置指定音频类型的音量，在变化超过阈值时通知订阅方
         /// </summary>
-        /// <param name="soundType"></param>
-        /// <param name="volume"></param>
+        /// <param name="soundType">音频类型</param>
+        /// <param name="volume">音量倍率，限制在 0 到 1</param>
         public static void SetVolume(int soundType, float volume)
         {
             volume = Mathf.Clamp01(volume);
-            var oldVolume = GetVolume(soundType, volume);
+            var oldVolume = GetVolume(soundType);
             s_SoundVolumes[soundType] = volume;
 
             if (Math.Abs(oldVolume - volume) > 0.001f)
