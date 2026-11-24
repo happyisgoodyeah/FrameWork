@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace ET.Client
 {
+
     /// <summary>
     /// 由YIUI工具自动创建 请勿修改
     /// </summary>
@@ -22,8 +23,13 @@ namespace ET.Client
         public EntityRef<YIUIViewComponent> u_UIView;
         public YIUIViewComponent UIView => u_UIView;
         public UnityEngine.UI.Button u_ComU_BackBtn;
+        public UnityEngine.UI.Slider u_ComU_AudioSilder;
         public UITaskEventP0 u_EventBackBtnClick;
         public UITaskEventHandleP0 u_EventBackBtnClickHandle;
         public const string OnEventBackBtnClickInvoke = "SettingsViewComponent.OnEventBackBtnClickInvoke";
+        public UIEventP1<float> u_EventSliderChange;
+        public UIEventHandleP1<float> u_EventSliderChangeHandle;
+        public const string OnEventSliderChangeInvoke = "SettingsViewComponent.OnEventSliderChangeInvoke";
+
     }
 }

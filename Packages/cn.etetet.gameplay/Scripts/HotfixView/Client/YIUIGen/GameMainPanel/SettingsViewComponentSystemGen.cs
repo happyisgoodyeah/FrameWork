@@ -30,13 +30,17 @@ namespace ET.Client
             self.u_UIBase = self.GetParent<YIUIChild>();
             self.u_UIWindow = self.UIBase.GetComponent<YIUIWindowComponent>();
             self.u_UIView = self.UIBase.GetComponent<YIUIViewComponent>();
-            self.UIWindow.WindowOption = EWindowOption.BanOpenTween | EWindowOption.BanCloseTween;
+            self.UIWindow.WindowOption = EWindowOption.BanOpenTween|EWindowOption.BanCloseTween;
             self.UIView.ViewWindowType = EViewWindowType.View;
             self.UIView.StackOption = EViewStackOption.VisibleTween;
 
             self.u_ComU_BackBtn = self.UIBase.ComponentTable.FindComponent<UnityEngine.UI.Button>("u_ComU_BackBtn");
+            self.u_ComU_AudioSilder = self.UIBase.ComponentTable.FindComponent<UnityEngine.UI.Slider>("u_ComU_AudioSilder");
             self.u_EventBackBtnClick = self.UIBase.EventTable.FindEvent<UITaskEventP0>("u_EventBackBtnClick");
-            self.u_EventBackBtnClickHandle = self.u_EventBackBtnClick.Add(self, SettingsViewComponent.OnEventBackBtnClickInvoke);
+            self.u_EventBackBtnClickHandle = self.u_EventBackBtnClick.Add(self,SettingsViewComponent.OnEventBackBtnClickInvoke);
+            self.u_EventSliderChange = self.UIBase.EventTable.FindEvent<UIEventP1<float>>("u_EventSliderChange");
+            self.u_EventSliderChangeHandle = self.u_EventSliderChange.Add(self,SettingsViewComponent.OnEventSliderChangeInvoke);
+
         }
     }
 }

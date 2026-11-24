@@ -54,5 +54,8 @@ namespace ET.Client
             await ETTask.CompletedTask;
             return true;
         }
+
+        #region YIUIEvent开始
+        #endregion YIUIEvent结束
     }
 }

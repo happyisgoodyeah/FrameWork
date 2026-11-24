@@ -140,6 +140,8 @@ namespace ET.Client
             return Math.Max(1, (count + SelectLevelViewComponent.PageSize - 1) / SelectLevelViewComponent.PageSize);
         }
 
+        #region YIUIEvent开始
+
         /// <summary>
         /// 切换到上一页关卡
         /// </summary>
@@ -172,5 +174,7 @@ namespace ET.Client
             self.NowPage = Math.Min(self.MaxPage, self.NowPage + 1);
             self.Refresh();
         }
+
+        #endregion YIUIEvent结束
     }
 }

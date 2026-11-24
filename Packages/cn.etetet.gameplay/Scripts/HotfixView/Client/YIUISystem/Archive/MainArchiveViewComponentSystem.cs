@@ -54,6 +54,8 @@ namespace ET.Client
             self.u_DataArchiveShowList?.SetValue(unlockedPuzzleIds, true);
         }
 
+        #region YIUIEvent开始
+
         /// <summary>
         /// 关闭图鉴面板
         /// </summary>
@@ -63,5 +65,7 @@ namespace ET.Client
         {
             await self.YIUIMgr().ClosePanelAsync<ArchivePanelComponent>();
         }
+
+        #endregion YIUIEvent结束
     }
 }

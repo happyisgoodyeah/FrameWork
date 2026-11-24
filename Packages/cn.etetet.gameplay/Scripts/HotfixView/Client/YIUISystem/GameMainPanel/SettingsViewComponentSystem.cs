@@ -41,6 +41,8 @@ namespace ET.Client
             return true;
         }
 
+        #region YIUIEvent开始
+
         /// <summary>
         /// 返回主菜单视图
         /// </summary>
@@ -50,5 +52,15 @@ namespace ET.Client
         {
             await self.YIUIRoot().OpenPanelAsync<GameMainPanelPanelComponent, EGameMainPanelPanelViewEnum>(EGameMainPanelPanelViewEnum.Main1View);
         }
+
+        
+        [YIUIInvoke(SettingsViewComponent.OnEventSliderChangeInvoke)]
+        private static void OnEventSliderChangeInvoke(this SettingsViewComponent self, float audioSliderValue)
+        {
+            AudioSystem.SetVolume((int)EAudioType.BGM , audioSliderValue);
+        }
+        #endregion YIUIEvent结束
+        
+        
     }
 }
