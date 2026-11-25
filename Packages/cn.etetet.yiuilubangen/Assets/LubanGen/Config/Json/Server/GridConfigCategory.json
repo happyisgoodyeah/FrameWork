@@ -41,7 +41,19 @@
     ],
     "ThemeScenePrefabPath": "LevelScene/Environment1001",
     "ThemeUIPrefabPath": "",
-    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud"
+    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud",
+    "RevealRules": [
+      {
+        "PuzzleId": 1001,
+        "Tray": 0,
+        "SlotIndex": 0,
+        "RequiredClicks": 3,
+        "HitPaths": [
+          "AnimatedDecor/HedgeLeft/Foliage",
+          "AnimatedDecor/BackHedgeLeft/Foliage"
+        ]
+      }
+    ]
   },
   {
     "Id": 1002,
@@ -85,7 +97,8 @@
     ],
     "ThemeScenePrefabPath": "LevelScene/Environment1002",
     "ThemeUIPrefabPath": "",
-    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud"
+    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud",
+    "RevealRules": []
   },
   {
     "Id": 1003,
@@ -124,7 +137,8 @@
     ],
     "ThemeScenePrefabPath": "LevelScene/Environment1003",
     "ThemeUIPrefabPath": "",
-    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud"
+    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud",
+    "RevealRules": []
   },
   {
     "Id": 1004,
@@ -158,7 +172,8 @@
     ],
     "ThemeScenePrefabPath": "",
     "ThemeUIPrefabPath": "",
-    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud"
+    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud",
+    "RevealRules": []
   },
   {
     "Id": 1005,
@@ -209,7 +224,8 @@
     ],
     "ThemeScenePrefabPath": "",
     "ThemeUIPrefabPath": "",
-    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud"
+    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud",
+    "RevealRules": []
   },
   {
     "Id": 1006,
@@ -253,7 +269,8 @@
     ],
     "ThemeScenePrefabPath": "",
     "ThemeUIPrefabPath": "",
-    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud"
+    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud",
+    "RevealRules": []
   },
   {
     "Id": 1007,
@@ -297,7 +314,8 @@
     ],
     "ThemeScenePrefabPath": "",
     "ThemeUIPrefabPath": "",
-    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud"
+    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud",
+    "RevealRules": []
   },
   {
     "Id": 1008,
@@ -341,7 +359,8 @@
     ],
     "ThemeScenePrefabPath": "",
     "ThemeUIPrefabPath": "",
-    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud"
+    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud",
+    "RevealRules": []
   },
   {
     "Id": 1009,
@@ -385,7 +404,8 @@
     ],
     "ThemeScenePrefabPath": "",
     "ThemeUIPrefabPath": "",
-    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud"
+    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud",
+    "RevealRules": []
   },
   {
     "Id": 1010,
@@ -429,7 +449,8 @@
     ],
     "ThemeScenePrefabPath": "",
     "ThemeUIPrefabPath": "",
-    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud"
+    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud",
+    "RevealRules": []
   },
   {
     "Id": 1011,
@@ -473,7 +494,8 @@
     ],
     "ThemeScenePrefabPath": "",
     "ThemeUIPrefabPath": "",
-    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud"
+    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud",
+    "RevealRules": []
   },
   {
     "Id": 1012,
@@ -517,7 +539,8 @@
     ],
     "ThemeScenePrefabPath": "",
     "ThemeUIPrefabPath": "",
-    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud"
+    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud",
+    "RevealRules": []
   },
   {
     "Id": 1013,
@@ -561,7 +584,8 @@
     ],
     "ThemeScenePrefabPath": "",
     "ThemeUIPrefabPath": "",
-    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud"
+    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud",
+    "RevealRules": []
   },
   {
     "Id": 1014,
@@ -605,7 +629,8 @@
     ],
     "ThemeScenePrefabPath": "",
     "ThemeUIPrefabPath": "",
-    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud"
+    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud",
+    "RevealRules": []
   },
   {
     "Id": 1015,
@@ -649,7 +674,8 @@
     ],
     "ThemeScenePrefabPath": "",
     "ThemeUIPrefabPath": "",
-    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud"
+    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud",
+    "RevealRules": []
   },
   {
     "Id": 1016,
@@ -693,7 +719,8 @@
     ],
     "ThemeScenePrefabPath": "",
     "ThemeUIPrefabPath": "",
-    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud"
+    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud",
+    "RevealRules": []
   },
   {
     "Id": 1017,
@@ -737,7 +764,8 @@
     ],
     "ThemeScenePrefabPath": "",
     "ThemeUIPrefabPath": "",
-    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud"
+    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud",
+    "RevealRules": []
   },
   {
     "Id": 1018,
@@ -781,7 +809,8 @@
     ],
     "ThemeScenePrefabPath": "",
     "ThemeUIPrefabPath": "",
-    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud"
+    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud",
+    "RevealRules": []
   },
   {
     "Id": 1019,
@@ -825,7 +854,8 @@
     ],
     "ThemeScenePrefabPath": "",
     "ThemeUIPrefabPath": "",
-    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud"
+    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud",
+    "RevealRules": []
   },
   {
     "Id": 1020,
@@ -869,6 +899,7 @@
     ],
     "ThemeScenePrefabPath": "",
     "ThemeUIPrefabPath": "",
-    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud"
+    "PlacementEffectPrefabPath": "LevelScene/Effect/PlacementCloud",
+    "RevealRules": []
   }
 ]

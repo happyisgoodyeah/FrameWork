@@ -100,13 +100,14 @@ namespace ET.Client
         }
 
         /// <summary>
-        /// 根据 Grid 配置批量创建当前关卡内的全部 Puzzle
+        /// 根据棋盘配表创建各托盘拼图及其可选的解谜组件。
         /// </summary>
         /// <param name="grid">目标棋盘</param>
         /// <param name="gridConfig">当前关卡配置</param>
         private static async ETTask CreatePuzzlesAsync(Grid grid, GridConfig gridConfig)
         {
             EntityRef<Grid> gridRef = grid;
+            PuzzleRevealRule[] revealRules = ResolveRevealRules(gridConfig);
             // 先统计每个托盘的槽位总数，供表现层把整列槽位垂直居中
             System.Collections.Generic.Dictionary<int, int> traySlotCounts = new();
             foreach (puzzle info in gridConfig.PuzzleList)
@@ -126,19 +127,46 @@ namespace ET.Client
                 puzzle puzzleInfo = gridConfig.PuzzleList[index];
                 long puzzleEntityId = PuzzleCoreConst.DefaultPuzzleEntityIdStart + index + 1;
                 traySlotCounts.TryGetValue(puzzleInfo.Tray, out int traySlotCount);
-                await CreatePuzzleAsync(grid, puzzleEntityId, puzzleInfo, traySlotCount);
+                await CreatePuzzleAsync(grid, puzzleEntityId, puzzleInfo, traySlotCount, revealRules[index]);
             }
         }
 
         /// <summary>
-        /// 根据 Puzzle 配置创建一块运行时 Puzzle 和其形状格
+        /// 按拼图配置和托盘位置关联本关的解谜规则，并检查每条规则对应唯一实例。
+        /// </summary>
+        private static PuzzleRevealRule[] ResolveRevealRules(GridConfig gridConfig)
+        {
+            var rules = new PuzzleRevealRule[gridConfig.PuzzleList.Count];
+            foreach (PuzzleRevealRule rule in gridConfig.RevealRules)
+            {
+                int targetIndex = -1;
+                for (int i = 0; i < gridConfig.PuzzleList.Count; ++i)
+                {
+                    puzzle piece = gridConfig.PuzzleList[i];
+                    if (piece.Id != rule.PuzzleId || piece.Tray != rule.Tray || piece.SlotIndex != rule.SlotIndex) continue;
+                    if (targetIndex >= 0) throw new System.InvalidOperationException($"关卡 {gridConfig.Id} 的解谜目标重复：托盘 {rule.Tray} 槽位 {rule.SlotIndex}");
+                    targetIndex = i;
+                }
+
+                if (targetIndex < 0 || rules[targetIndex] != null || rule.RequiredClicks < 1 || rule.HitPaths.Count == 0)
+                {
+                    throw new System.InvalidOperationException($"关卡 {gridConfig.Id} 的解谜配置无效：拼图 {rule.PuzzleId}，托盘 {rule.Tray}，槽位 {rule.SlotIndex}");
+                }
+                rules[targetIndex] = rule;
+            }
+            return rules;
+        }
+
+        /// <summary>
+        /// 创建拼图、形状格和可选解锁状态，完成后再发布拼图创建事件。
         /// </summary>
         /// <param name="grid">目标棋盘</param>
         /// <param name="puzzleId">目标 Puzzle 实体 id</param>
         /// <param name="puzzleInfo">当前关卡内的 Puzzle 实例配置</param>
         /// <param name="traySlotCount">该 Puzzle 所属托盘的槽位总数</param>
+        /// <param name="revealRule">本实例的点击解锁规则，普通拼图为空</param>
         /// <returns>创建完成的 Puzzle</returns>
-        private static async ETTask<Puzzle> CreatePuzzleAsync(Grid grid, long puzzleId, puzzle puzzleInfo, int traySlotCount)
+        private static async ETTask<Puzzle> CreatePuzzleAsync(Grid grid, long puzzleId, puzzle puzzleInfo, int traySlotCount, PuzzleRevealRule revealRule)
         {
             Puzzle existedPuzzle = grid.GetPuzzle(puzzleId);
             if (existedPuzzle != null)
@@ -151,6 +179,10 @@ namespace ET.Client
             puzzleEntity.Tray = puzzleInfo.Tray;
             puzzleEntity.TraySlotIndex = puzzleInfo.SlotIndex;
             puzzleEntity.TraySlotCount = traySlotCount;
+            if (revealRule != null)
+            {
+                puzzleEntity.AddComponent<PuzzleRevealComponent, PuzzleRevealRule>(revealRule);
+            }
 
             foreach (System.Collections.Generic.List<int> slotOffset in puzzleConfig.SlotOffset)
             {

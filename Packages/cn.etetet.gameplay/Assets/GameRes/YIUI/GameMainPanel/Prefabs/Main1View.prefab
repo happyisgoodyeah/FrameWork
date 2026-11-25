@@ -238,10 +238,10 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 4391759127350186691}
-    - {fileID: 515577952879894814}
-    - {fileID: 5313697681904797017}
-    - {fileID: 2177352833580294362}
-    - {fileID: 6966857717399253}
+    - {fileID: 5655154627235738256}
+    - {fileID: 1299572647923989715}
+    - {fileID: 4572446623921880463}
+    - {fileID: 8643344537130606372}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -969,37 +969,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExitBtn
       objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"m_EventName","value":{"$id":0,"$type":"System.String, mscorlib","u_EventExitGame"}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"m_EventTable","value":$eref:0'
-      objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 4391759127350186691}
     - target: {fileID: 7072157650103821337, guid: e83bcbc5e4824f0428d6da28154677b1,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1145,30 +1114,150 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4286611646
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 951444756465710639, guid: e83bcbc5e4824f0428d6da28154677b1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1299572647923989715}
   m_SourcePrefab: {fileID: 100100000, guid: e83bcbc5e4824f0428d6da28154677b1, type: 3}
---- !u!114 &5313697681904797017 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
+--- !u!1 &2195745831123531920 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 951444756465710639, guid: e83bcbc5e4824f0428d6da28154677b1,
     type: 3}
   m_PrefabInstance: {fileID: 1390748911163035327}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+--- !u!114 &1299572647923989715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2195745831123531920}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 543b9965e22a4bb882ba1493143e19f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes:
+    ReferencedUnityObjects:
+    - {fileID: 4391759127350186691}
+    - {fileID: 1299572647923989715}
+    SerializedBytesString:
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: m_EventTable
+      Entry: 10
+      Data: 0
+    - Name: m_EventName
+      Entry: 1
+      Data: u_EventExitGame
+    - Name: m_UIEvent
+      Entry: 7
+      Data: 0|YIUIFramework.UITaskEventP0, ET.YIUIFramework
+    - Name: m_EventName
+      Entry: 1
+      Data: u_EventExitGame
+    - Name: AllEventParamType
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[YIUIFramework.EUIEventParamType,
+        ET.YIUIFramework]], mscorlib
+    - Name:
+      Entry: 12
+      Data: 0
+    - Name:
+      Entry: 13
+      Data:
+    - Name:
+      Entry: 8
+      Data:
+    - Name: OnRemoveAction
+      Entry: 7
+      Data: 2|System.Action`1[[YIUIFramework.UIEventBase, ET.YIUIFramework]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 3|System.RuntimeType, mscorlib
+    - Name:
+      Entry: 1
+      Data: YIUIFramework.UIBindEventTable, ET.YIUIFramework
+    - Name:
+      Entry: 8
+      Data:
+    - Name: methodName
+      Entry: 1
+      Data: OnRemoveUIEvent
+    - Name: delegateType
+      Entry: 7
+      Data: 4|System.RuntimeType, mscorlib
+    - Name:
+      Entry: 1
+      Data: System.Action`1[[YIUIFramework.UIEventBase, ET.YIUIFramework]], mscorlib
+    - Name:
+      Entry: 8
+      Data:
+    - Name: signature
+      Entry: 7
+      Data: 5|System.Type[], mscorlib
+    - Name:
+      Entry: 12
+      Data: 1
+    - Name:
+      Entry: 7
+      Data: 6|System.RuntimeType, mscorlib
+    - Name:
+      Entry: 1
+      Data: YIUIFramework.UIEventBase, ET.YIUIFramework
+    - Name:
+      Entry: 8
+      Data:
+    - Name:
+      Entry: 13
+      Data:
+    - Name:
+      Entry: 8
+      Data:
+    - Name:
+      Entry: 8
+      Data:
+    - Name: m_Binds
+      Entry: 7
+      Data: 7|System.Collections.Generic.List`1[[YIUIFramework.UIEventBind, ET.YIUIFramework]],
+        mscorlib
+    - Name:
+      Entry: 12
+      Data: 1
+    - Name:
+      Entry: 10
+      Data: 1
+    - Name:
+      Entry: 13
+      Data:
+    - Name:
+      Entry: 8
+      Data:
+    - Name:
+      Entry: 8
+      Data:
+  m_SkipWhenDrag: 0
+  m_Selectable: {fileID: 6695474151225424244}
+  m_BanLayerOption: 1
 --- !u!114 &6695474151225424244 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5739825081089767371, guid: e83bcbc5e4824f0428d6da28154677b1,
     type: 3}
   m_PrefabInstance: {fileID: 1390748911163035327}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2195745831123531920}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -1193,37 +1282,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingsBtn
       objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"m_EventName","value":{"$id":0,"$type":"System.String, mscorlib","u_EventSettingsEnter"}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"m_EventTable","value":$eref:0'
-      objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 4391759127350186691}
     - target: {fileID: 7072157650103821337, guid: e83bcbc5e4824f0428d6da28154677b1,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1369,10 +1427,15 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4286611646
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 951444756465710639, guid: e83bcbc5e4824f0428d6da28154677b1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4572446623921880463}
   m_SourcePrefab: {fileID: 100100000, guid: e83bcbc5e4824f0428d6da28154677b1, type: 3}
 --- !u!114 &820380238413765879 stripped
 MonoBehaviour:
@@ -1380,22 +1443,10 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 4955481292261862204}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5328130053850488083}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2177352833580294362 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4955481292261862204}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 543b9965e22a4bb882ba1493143e19f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &2801307220986515237 stripped
@@ -1404,6 +1455,133 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4955481292261862204}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5328130053850488083 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 951444756465710639, guid: e83bcbc5e4824f0428d6da28154677b1,
+    type: 3}
+  m_PrefabInstance: {fileID: 4955481292261862204}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4572446623921880463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5328130053850488083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 543b9965e22a4bb882ba1493143e19f2, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes:
+    ReferencedUnityObjects:
+    - {fileID: 4391759127350186691}
+    - {fileID: 4572446623921880463}
+    SerializedBytesString:
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: m_EventTable
+      Entry: 10
+      Data: 0
+    - Name: m_EventName
+      Entry: 1
+      Data: u_EventSettingsEnter
+    - Name: m_UIEvent
+      Entry: 7
+      Data: 0|YIUIFramework.UITaskEventP0, ET.YIUIFramework
+    - Name: m_EventName
+      Entry: 1
+      Data: u_EventSettingsEnter
+    - Name: AllEventParamType
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[YIUIFramework.EUIEventParamType,
+        ET.YIUIFramework]], mscorlib
+    - Name:
+      Entry: 12
+      Data: 0
+    - Name:
+      Entry: 13
+      Data:
+    - Name:
+      Entry: 8
+      Data:
+    - Name: OnRemoveAction
+      Entry: 7
+      Data: 2|System.Action`1[[YIUIFramework.UIEventBase, ET.YIUIFramework]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 3|System.RuntimeType, mscorlib
+    - Name:
+      Entry: 1
+      Data: YIUIFramework.UIBindEventTable, ET.YIUIFramework
+    - Name:
+      Entry: 8
+      Data:
+    - Name: methodName
+      Entry: 1
+      Data: OnRemoveUIEvent
+    - Name: delegateType
+      Entry: 7
+      Data: 4|System.RuntimeType, mscorlib
+    - Name:
+      Entry: 1
+      Data: System.Action`1[[YIUIFramework.UIEventBase, ET.YIUIFramework]], mscorlib
+    - Name:
+      Entry: 8
+      Data:
+    - Name: signature
+      Entry: 7
+      Data: 5|System.Type[], mscorlib
+    - Name:
+      Entry: 12
+      Data: 1
+    - Name:
+      Entry: 7
+      Data: 6|System.RuntimeType, mscorlib
+    - Name:
+      Entry: 1
+      Data: YIUIFramework.UIEventBase, ET.YIUIFramework
+    - Name:
+      Entry: 8
+      Data:
+    - Name:
+      Entry: 13
+      Data:
+    - Name:
+      Entry: 8
+      Data:
+    - Name:
+      Entry: 8
+      Data:
+    - Name: m_Binds
+      Entry: 7
+      Data: 7|System.Collections.Generic.List`1[[YIUIFramework.UIEventBind, ET.YIUIFramework]],
+        mscorlib
+    - Name:
+      Entry: 12
+      Data: 1
+    - Name:
+      Entry: 10
+      Data: 1
+    - Name:
+      Entry: 13
+      Data:
+    - Name:
+      Entry: 8
+      Data:
+    - Name:
+      Entry: 8
+      Data:
+  m_SkipWhenDrag: 0
+  m_Selectable: {fileID: 820380238413765879}
+  m_BanLayerOption: 1
 --- !u!1001 &6551089799503082803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1417,42 +1595,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayGame
       objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: m_SkipWhenDrag
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"m_EventName","value":{"$id":0,"$type":"System.String, mscorlib","u_EventStartGame"}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"m_EventTable","value":$eref:0'
-      objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 4391759127350186691}
     - target: {fileID: 7072157650103821337, guid: e83bcbc5e4824f0428d6da28154677b1,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1593,30 +1735,23 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4286611646
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 951444756465710639, guid: e83bcbc5e4824f0428d6da28154677b1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8643344537130606372}
   m_SourcePrefab: {fileID: 100100000, guid: e83bcbc5e4824f0428d6da28154677b1, type: 3}
---- !u!114 &6966857717399253 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-    type: 3}
-  m_PrefabInstance: {fileID: 6551089799503082803}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 543b9965e22a4bb882ba1493143e19f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1535113905450992376 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5739825081089767371, guid: e83bcbc5e4824f0428d6da28154677b1,
     type: 3}
   m_PrefabInstance: {fileID: 6551089799503082803}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 6331516275245384476}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -1628,6 +1763,133 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6551089799503082803}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6331516275245384476 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 951444756465710639, guid: e83bcbc5e4824f0428d6da28154677b1,
+    type: 3}
+  m_PrefabInstance: {fileID: 6551089799503082803}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8643344537130606372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6331516275245384476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 543b9965e22a4bb882ba1493143e19f2, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes:
+    ReferencedUnityObjects:
+    - {fileID: 4391759127350186691}
+    - {fileID: 8643344537130606372}
+    SerializedBytesString:
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: m_EventTable
+      Entry: 10
+      Data: 0
+    - Name: m_EventName
+      Entry: 1
+      Data: u_EventStartGame
+    - Name: m_UIEvent
+      Entry: 7
+      Data: 0|YIUIFramework.UITaskEventP0, ET.YIUIFramework
+    - Name: m_EventName
+      Entry: 1
+      Data: u_EventStartGame
+    - Name: AllEventParamType
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[YIUIFramework.EUIEventParamType,
+        ET.YIUIFramework]], mscorlib
+    - Name:
+      Entry: 12
+      Data: 0
+    - Name:
+      Entry: 13
+      Data:
+    - Name:
+      Entry: 8
+      Data:
+    - Name: OnRemoveAction
+      Entry: 7
+      Data: 2|System.Action`1[[YIUIFramework.UIEventBase, ET.YIUIFramework]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 3|System.RuntimeType, mscorlib
+    - Name:
+      Entry: 1
+      Data: YIUIFramework.UIBindEventTable, ET.YIUIFramework
+    - Name:
+      Entry: 8
+      Data:
+    - Name: methodName
+      Entry: 1
+      Data: OnRemoveUIEvent
+    - Name: delegateType
+      Entry: 7
+      Data: 4|System.RuntimeType, mscorlib
+    - Name:
+      Entry: 1
+      Data: System.Action`1[[YIUIFramework.UIEventBase, ET.YIUIFramework]], mscorlib
+    - Name:
+      Entry: 8
+      Data:
+    - Name: signature
+      Entry: 7
+      Data: 5|System.Type[], mscorlib
+    - Name:
+      Entry: 12
+      Data: 1
+    - Name:
+      Entry: 7
+      Data: 6|System.RuntimeType, mscorlib
+    - Name:
+      Entry: 1
+      Data: YIUIFramework.UIEventBase, ET.YIUIFramework
+    - Name:
+      Entry: 8
+      Data:
+    - Name:
+      Entry: 13
+      Data:
+    - Name:
+      Entry: 8
+      Data:
+    - Name:
+      Entry: 8
+      Data:
+    - Name: m_Binds
+      Entry: 7
+      Data: 7|System.Collections.Generic.List`1[[YIUIFramework.UIEventBind, ET.YIUIFramework]],
+        mscorlib
+    - Name:
+      Entry: 12
+      Data: 1
+    - Name:
+      Entry: 10
+      Data: 1
+    - Name:
+      Entry: 13
+      Data:
+    - Name:
+      Entry: 8
+      Data:
+    - Name:
+      Entry: 8
+      Data:
+  m_SkipWhenDrag: 0
+  m_Selectable: {fileID: 1535113905450992376}
+  m_BanLayerOption: 1
 --- !u!1001 &6761405307753016056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1641,37 +1903,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArchiveEnterBtn
       objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"m_EventName","value":{"$id":0,"$type":"System.String, mscorlib","u_EventArchiveEnter"}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"m_EventTable","value":$eref:0'
-      objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-        type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 4391759127350186691}
     - target: {fileID: 7072157650103821337, guid: e83bcbc5e4824f0428d6da28154677b1,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1817,30 +2048,23 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4286611646
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 951444756465710639, guid: e83bcbc5e4824f0428d6da28154677b1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5655154627235738256}
   m_SourcePrefab: {fileID: 100100000, guid: e83bcbc5e4824f0428d6da28154677b1, type: 3}
---- !u!114 &515577952879894814 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6553552364792630246, guid: e83bcbc5e4824f0428d6da28154677b1,
-    type: 3}
-  m_PrefabInstance: {fileID: 6761405307753016056}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 543b9965e22a4bb882ba1493143e19f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1329303845007039795 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5739825081089767371, guid: e83bcbc5e4824f0428d6da28154677b1,
     type: 3}
   m_PrefabInstance: {fileID: 6761405307753016056}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5828049046589463767}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -1852,3 +2076,130 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6761405307753016056}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5828049046589463767 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 951444756465710639, guid: e83bcbc5e4824f0428d6da28154677b1,
+    type: 3}
+  m_PrefabInstance: {fileID: 6761405307753016056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5655154627235738256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828049046589463767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 543b9965e22a4bb882ba1493143e19f2, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes:
+    ReferencedUnityObjects:
+    - {fileID: 4391759127350186691}
+    - {fileID: 5655154627235738256}
+    SerializedBytesString:
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: m_EventTable
+      Entry: 10
+      Data: 0
+    - Name: m_EventName
+      Entry: 1
+      Data: u_EventArchiveEnter
+    - Name: m_UIEvent
+      Entry: 7
+      Data: 0|YIUIFramework.UITaskEventP0, ET.YIUIFramework
+    - Name: m_EventName
+      Entry: 1
+      Data: u_EventArchiveEnter
+    - Name: AllEventParamType
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[YIUIFramework.EUIEventParamType,
+        ET.YIUIFramework]], mscorlib
+    - Name:
+      Entry: 12
+      Data: 0
+    - Name:
+      Entry: 13
+      Data:
+    - Name:
+      Entry: 8
+      Data:
+    - Name: OnRemoveAction
+      Entry: 7
+      Data: 2|System.Action`1[[YIUIFramework.UIEventBase, ET.YIUIFramework]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 3|System.RuntimeType, mscorlib
+    - Name:
+      Entry: 1
+      Data: YIUIFramework.UIBindEventTable, ET.YIUIFramework
+    - Name:
+      Entry: 8
+      Data:
+    - Name: methodName
+      Entry: 1
+      Data: OnRemoveUIEvent
+    - Name: delegateType
+      Entry: 7
+      Data: 4|System.RuntimeType, mscorlib
+    - Name:
+      Entry: 1
+      Data: System.Action`1[[YIUIFramework.UIEventBase, ET.YIUIFramework]], mscorlib
+    - Name:
+      Entry: 8
+      Data:
+    - Name: signature
+      Entry: 7
+      Data: 5|System.Type[], mscorlib
+    - Name:
+      Entry: 12
+      Data: 1
+    - Name:
+      Entry: 7
+      Data: 6|System.RuntimeType, mscorlib
+    - Name:
+      Entry: 1
+      Data: YIUIFramework.UIEventBase, ET.YIUIFramework
+    - Name:
+      Entry: 8
+      Data:
+    - Name:
+      Entry: 13
+      Data:
+    - Name:
+      Entry: 8
+      Data:
+    - Name:
+      Entry: 8
+      Data:
+    - Name: m_Binds
+      Entry: 7
+      Data: 7|System.Collections.Generic.List`1[[YIUIFramework.UIEventBind, ET.YIUIFramework]],
+        mscorlib
+    - Name:
+      Entry: 12
+      Data: 1
+    - Name:
+      Entry: 10
+      Data: 1
+    - Name:
+      Entry: 13
+      Data:
+    - Name:
+      Entry: 8
+      Data:
+    - Name:
+      Entry: 8
+      Data:
+  m_SkipWhenDrag: 0
+  m_Selectable: {fileID: 1329303845007039795}
+  m_BanLayerOption: 1

@@ -59,7 +59,7 @@ namespace ET.Client
     public class PuzzleViewCreationCheckHandler : AInvokeHandler<PuzzleViewCreationCheck>
     {
         /// <summary>
-        /// 验证实体的场景对象和交互结构，缺失时向创建主链抛出异常
+        /// 验证场景对象、拖拽与可选解谜命中区域，缺失时向建关主链抛出异常。
         /// </summary>
         /// <param name="args">当前阶段刚完成创建的实体</param>
         public override void Handle(PuzzleViewCreationCheck args)
@@ -75,8 +75,10 @@ namespace ET.Client
                     break;
                 case Puzzle puzzle:
                     PuzzleView puzzleView = puzzle.GetComponent<PuzzleView>();
+                    PuzzleRevealComponent reveal = puzzle.GetComponent<PuzzleRevealComponent>();
                     ready = puzzleView != null && puzzleView.IsInitialized && puzzleView.GameObject != null && puzzleView.SpriteRenderer != null &&
-                        puzzleView.BodyCollider2D != null && puzzle.GetComponent<PuzzleDragComponent>() != null;
+                        puzzleView.BodyCollider2D != null && puzzle.GetComponent<PuzzleDragComponent>() != null &&
+                        (reveal == null || reveal.GetComponent<PuzzleRevealView>()?.HitAreas != null);
                     break;
                 case Slot slot:
                     SlotView slotView = slot.GetComponent<SlotView>();

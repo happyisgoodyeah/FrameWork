@@ -76,7 +76,7 @@ namespace ET.Client
         {
             matchedGridSlots = new List<Slot>();
             Slot originSlot = self.GetOriginSlot();
-            if (grid == null || originSlot == null || self.ChildrenCount() <= 0 || self.GetComponent<PuzzleRevealComponent>() != null)
+            if (grid == null || originSlot == null || self.ChildrenCount() <= 0 || self.GetComponent<PuzzleRevealComponent>()?.IsLocked == true)
             {
                 return PuzzlePlacementCheckResult.Invalid;
             }
@@ -178,7 +178,7 @@ namespace ET.Client
         /// <param name="matchedGridSlots">本次放置涉及的全部目标 Grid Slot。</param>
         public static void ApplyPlacement(this Puzzle self, Grid grid, int anchorX, int anchorY, List<Slot> matchedGridSlots)
         {
-            if (grid == null || matchedGridSlots == null || matchedGridSlots.Count == 0 || self.GetComponent<PuzzleRevealComponent>() != null)
+            if (grid == null || matchedGridSlots == null || matchedGridSlots.Count == 0 || self.GetComponent<PuzzleRevealComponent>()?.IsLocked == true)
             {
                 return;
             }

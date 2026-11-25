@@ -28,6 +28,7 @@ namespace ET
             ThemeScenePrefabPath = _buf.ReadString();
             ThemeUIPrefabPath = _buf.ReadString();
             PlacementEffectPrefabPath = _buf.ReadString();
+            {int n0 = _buf.ReadSize(); RevealRules = new System.Collections.Generic.List<PuzzleRevealRule>(n0);for(var i0 = 0 ; i0 < n0 ; i0++) { PuzzleRevealRule _e0;  _e0 = global::ET.PuzzleRevealRule.DeserializePuzzleRevealRule(_buf); RevealRules.Add(_e0);}}
 
             EndInit();
         }
@@ -81,6 +82,10 @@ namespace ET
         /// 落位特效预制体路径
         /// </summary>
         public readonly string PlacementEffectPrefabPath;
+        /// <summary>
+        /// 隐藏拼图 ID
+        /// </summary>
+        public readonly System.Collections.Generic.List<PuzzleRevealRule> RevealRules;
     
         public const int __ID__ = -2067346872;
         public override int GetTypeId() => __ID__;
@@ -88,6 +93,7 @@ namespace ET
         public  void ResolveRef()
         {
             foreach (var _e in PuzzleList) { _e?.ResolveRef(); }
+            foreach (var _e in RevealRules) { _e?.ResolveRef(); }
             EndRef();
         }
 
@@ -105,6 +111,7 @@ namespace ET
             + "ThemeScenePrefabPath:" + ThemeScenePrefabPath + ","
             + "ThemeUIPrefabPath:" + ThemeUIPrefabPath + ","
             + "PlacementEffectPrefabPath:" + PlacementEffectPrefabPath + ","
+            + "RevealRules:" + Luban.StringUtil.CollectionToString(RevealRules) + ","
             + "}";
         }
 

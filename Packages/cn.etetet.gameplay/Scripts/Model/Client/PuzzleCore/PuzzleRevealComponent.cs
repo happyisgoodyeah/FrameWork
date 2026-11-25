@@ -1,9 +1,11 @@
 namespace ET.Client
 {
-    /// <summary>拼图等待场景点击解锁期间的计数，解锁后随即移除。</summary>
+    /// <summary>本关拼图实例的解谜规则与剩余点击数，随拼图创建和释放。</summary>
     [ComponentOf(typeof(Puzzle))]
-    public class PuzzleRevealComponent : Entity, IAwake<int>
+    public class PuzzleRevealComponent : Entity, IAwake<PuzzleRevealRule>
     {
+        public PuzzleRevealRule Rule { get; set; }
         public int RemainingClicks { get; set; }
+        public bool IsLocked => RemainingClicks > 0;
     }
 }

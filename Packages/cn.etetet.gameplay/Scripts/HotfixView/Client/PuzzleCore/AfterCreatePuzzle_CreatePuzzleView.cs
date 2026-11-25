@@ -7,7 +7,7 @@ namespace ET.Client
     public class AfterCreatePuzzle_CreatePuzzleView : AEvent<Scene, AfterCreatePuzzle>
     {
         /// <summary>
-        /// 创建拼图表现和拖拽组件，并应用本关场景指定的初始隐藏条件。
+        /// 创建拼图的表现和拖拽组件，并为已有解谜模型绑定场景表现。
         /// </summary>
         protected override async ETTask Run(Scene scene, AfterCreatePuzzle args)
         {
@@ -27,8 +27,13 @@ namespace ET.Client
                 return;
             }
 
-            PuzzleView view = puzzle.AddComponent<PuzzleView, UnityEngine.GameObject>(prefab);
-            puzzle.GetParent<Grid>().GetComponent<LevelView>()?.BindRevealTrigger(view);
+            puzzle.AddComponent<PuzzleView, UnityEngine.GameObject>(prefab);
+            PuzzleRevealComponent reveal = puzzle.GetComponent<PuzzleRevealComponent>();
+            if (reveal != null)
+            {
+                LevelView levelView = puzzle.GetParent<Grid>().GetComponent<LevelView>();
+                reveal.AddComponent<PuzzleRevealView, UnityEngine.GameObject>(levelView.SceneObject);
+            }
 
             if (puzzle.GetComponent<PuzzleDragComponent>() == null)
             {

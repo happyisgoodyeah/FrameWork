@@ -1,4 +1,3 @@
-using DG.Tweening;
 using UnityEngine;
 
 namespace ET.Client
@@ -15,14 +14,13 @@ namespace ET.Client
         {
             self.IsInitialized = false;
             self.SceneObject = null;
-            self.RevealTrigger = null;
             self.UIPrefab = null;
             self.UIObject = null;
             self.PlacementEffectPrefab = null;
             self.LastPlacementView = default;
         }
 
-        /// <summary>按配置创建场景主题、检查场景解谜触发器并预加载 UI 主题和落位特效。</summary>
+        /// <summary>按配置创建场景主题并预加载 UI 主题和落位特效。</summary>
         /// <param name="self">当前关卡的表现组件</param>
         /// <param name="config">当前关卡配置</param>
         public static async ETTask LoadAsync(this LevelView self, GridConfig config)
@@ -38,11 +36,6 @@ namespace ET.Client
                 if (self == null) return;
                 self.SceneObject = UnityEngine.Object.Instantiate(prefab, sceneRoot.SceneRoot, false);
                 self.SceneObject.name = "ThemeScene";
-                if (self.SceneObject.TryGetComponent(out PuzzleGame.PuzzleRevealTrigger trigger))
-                {
-                    trigger.Validate();
-                    self.RevealTrigger = trigger;
-                }
                 if (self.SceneObject.TryGetComponent(out PuzzleGame.EnvironmentBackdrop backdrop))
                 {
                     backdrop.Configure(sceneRoot.GameCamera);
@@ -74,45 +67,6 @@ namespace ET.Client
                 self.PlacementEffectPrefab = prefab;
             }
             self.IsInitialized = true;
-        }
-
-        /// <summary>托盘摆放完成后，隐藏本关指定的拼图，并让各命中区域指向同一个解锁组件。</summary>
-        public static void BindRevealTrigger(this LevelView self, PuzzleView view)
-        {
-            PuzzleGame.PuzzleRevealTrigger trigger = self.RevealTrigger;
-            Puzzle puzzle = view.GetParent<Puzzle>();
-            if (trigger == null || !trigger.Matches(puzzle.PuzzleConfigId, puzzle.Tray, puzzle.TraySlotIndex))
-            {
-                return;
-            }
-
-            PuzzleRevealComponent reveal = puzzle.AddComponent<PuzzleRevealComponent, int>(trigger.RequiredClicks);
-            foreach (Collider2D area in trigger.HitAreas)
-            {
-                if (!area.TryGetComponent(out GameObjectEntityRef bridge))
-                {
-                    bridge = area.gameObject.AddComponent<GameObjectEntityRef>();
-                }
-                bridge.Entity = reveal;
-            }
-            view.GameObject.SetActive(false);
-        }
-
-        /// <summary>拨动草丛一次，达到点击次数时显示原托盘槽位上的拼图并关闭草丛命中。</summary>
-        public static void ClickRevealTrigger(this LevelView self, PuzzleRevealComponent reveal)
-        {
-            Puzzle puzzle = reveal.GetParent<Puzzle>();
-            PuzzleGame.PuzzleRevealTrigger trigger = self.RevealTrigger;
-            bool unlocked = reveal.RegisterClick();
-            DOTween.Kill(trigger, true);
-            foreach (Collider2D area in trigger.HitAreas)
-            {
-                Transform foliage = area.transform;
-                Vector3 punch = Vector3.Scale(foliage.localScale, new Vector3(0.045f, -0.09f, 0f));
-                foliage.DOPunchScale(punch, 0.28f, 4, 0.4f).SetTarget(trigger).SetLink(area.gameObject);
-                if (unlocked) area.enabled = false;
-            }
-            if (unlocked) puzzle.GetComponent<PuzzleView>().GameObject.SetActive(true);
         }
 
         /// <summary>在关卡 UI 打开时挂载主题装饰，复用本关已有的实例</summary>
@@ -155,7 +109,6 @@ namespace ET.Client
             }
             self.ReleaseUI();
             self.SceneObject = null;
-            self.RevealTrigger = null;
             self.UIObject = null;
             self.UIPrefab = null;
             self.PlacementEffectPrefab = null;

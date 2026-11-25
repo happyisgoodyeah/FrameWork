@@ -31,6 +31,12 @@ namespace ET.Client
         public Puzzle Puzzle;
     }
 
+    /// <summary>一次有效点击已更新拼图解谜进度，剩余次数为零时拼图可用。</summary>
+    public struct PuzzleRevealProgressChanged
+    {
+        public PuzzleRevealComponent Reveal;
+    }
+
     /// <summary>
     /// Slot 数据实体创建完成事件。
     /// </summary>

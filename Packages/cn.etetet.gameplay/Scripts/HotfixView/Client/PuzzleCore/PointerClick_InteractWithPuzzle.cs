@@ -9,7 +9,7 @@ namespace ET.Client
     public class PointerClick_InteractWithPuzzle : AEvent<Scene, PointerClick>
     {
         /// <summary>
-        /// 优先旋转命中的拼图，点击场景物件时要求按下和松开均命中同一解锁目标。
+        /// 优先旋转命中的拼图，按下和松开命中同一场景目标时向解谜模型提交一次点击。
         /// </summary>
         /// <param name="scene">当前关卡场景</param>
         /// <param name="args">点击输入上下文</param>
@@ -38,7 +38,7 @@ namespace ET.Client
                 PuzzleInputResolveResult release = PuzzleInputResolver.Resolve(args.Context);
                 if (release.Reveal == press.Reveal && release.Puzzle == null && release.GridSlot == null)
                 {
-                    grid.GetComponent<LevelView>().ClickRevealTrigger(press.Reveal);
+                    press.Reveal.RegisterClick();
                 }
             }
 

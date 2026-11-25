@@ -1,3 +1,5 @@
+using System;
+
 namespace ET.Client
 {
     /// <summary>
@@ -76,7 +78,7 @@ namespace ET.Client
         }
 
         /// <summary>
-        /// 从指定命中中解析拼图、格子和解锁物件，释放表现时允许访问已通关棋盘。
+        /// 从指定命中中解析拼图和格子，仅将解谜表现已绑定的触发器识别为解谜区域。释放表现时允许访问已通关棋盘。
         /// </summary>
         /// <param name="hitResults">要解析的输入命中结果数组</param>
         /// <param name="requireInteractive">是否只接受可交互棋盘中的命中</param>
@@ -91,15 +93,17 @@ namespace ET.Client
 
             for (int i = 0; i < hitResults.Length; ++i)
             {
-                Entity entity = hitResults[i].Entity;
+                InputHitResult hit = hitResults[i];
+                Entity entity = hit.Entity;
                 if (entity == null)
                 {
                     continue;
                 }
 
-                if (entity is PuzzleRevealComponent reveal)
+                if (entity is PuzzleRevealView revealView && hit.Collider2D != null && hit.Collider2D.isTrigger &&
+                    revealView.HitAreas != null && Array.IndexOf(revealView.HitAreas, hit.Collider2D) >= 0)
                 {
-                    result.Reveal ??= reveal;
+                    result.Reveal ??= revealView.GetParent<PuzzleRevealComponent>();
                     continue;
                 }
 

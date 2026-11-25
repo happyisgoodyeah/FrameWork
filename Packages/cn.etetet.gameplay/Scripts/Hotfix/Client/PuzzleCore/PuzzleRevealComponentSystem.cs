@@ -3,24 +3,30 @@ namespace ET.Client
     [EntitySystemOf(typeof(PuzzleRevealComponent))]
     public static partial class PuzzleRevealComponentSystem
     {
-        /// <summary>用本关要求的点击次数初始化隐藏拼图。</summary>
+        /// <summary>在拼图数据创建时装入本关规则并从完整点击次数开始。</summary>
         [EntitySystem]
-        private static void Awake(this PuzzleRevealComponent self, int requiredClicks)
+        private static void Awake(this PuzzleRevealComponent self, PuzzleRevealRule rule)
         {
-            self.RemainingClicks = requiredClicks;
+            self.Rule = rule;
+            self.RemainingClicks = rule.RequiredClicks;
         }
 
-        /// <summary>记录一次有效点击，达到指定次数时解除拼图的放置限制。</summary>
-        /// <returns>本次点击是否解锁了拼图。</returns>
-        public static bool RegisterClick(this PuzzleRevealComponent self)
+        /// <summary>在可交互棋盘上消费一次点击，先更新解锁状态再通知表现层。</summary>
+        public static void RegisterClick(this PuzzleRevealComponent self)
         {
-            if (--self.RemainingClicks > 0)
+            if (self.IsDisposed || !self.IsLocked)
             {
-                return false;
+                return;
             }
 
-            self.GetParent<Puzzle>().RemoveComponent<PuzzleRevealComponent>();
-            return true;
+            Grid grid = self.GetParent<Puzzle>().GetParent<Grid>();
+            if (!grid.IsReady || grid.CompletionPublished)
+            {
+                return;
+            }
+
+            --self.RemainingClicks;
+            EventSystem.Instance.Publish(grid.Scene(), new PuzzleRevealProgressChanged { Reveal = self });
         }
     }
 }
