@@ -3,13 +3,14 @@ using UnityEngine;
 namespace PuzzleGame
 {
     /// <summary>
-    /// 驱动独立风摆层和固定数量的环境粒子，解谜挂点不参与动画
+    /// 用同一时钟驱动关卡装饰动画、风摆网格和固定数量的环境粒子。
     /// </summary>
     [DisallowMultipleComponent]
     public sealed class LevelEnvironmentAnimation : MonoBehaviour
     {
         public enum WeatherEffect { None, Sakura, Leaves }
 
+        [SerializeField, Tooltip("循环采样的场景动画。曲线绑定到美术子节点，交互挂点可独立移动。")] private AnimationClip decorAnimation;
         [SerializeField, Tooltip("无天气、樱花飘落或间歇落叶。")] private WeatherEffect effect;
         [SerializeField] private Sprite particleSprite;
         [SerializeField, Range(1, 32)] private int particleCount = 20;
@@ -40,11 +41,15 @@ namespace PuzzleGame
             Sample(elapsed);
         }
 
-        /// <summary>按绝对时间采样风摆与天气粒子</summary>
+        /// <summary>按绝对时间循环采样装饰图层，同时更新风摆与天气粒子。</summary>
         /// <param name="seconds">累计播放秒数</param>
         public void Sample(double seconds)
         {
             seconds = System.Math.Max(0, seconds);
+            if (decorAnimation != null && decorAnimation.length > 0f)
+            {
+                decorAnimation.SampleAnimation(gameObject, (float)(seconds % decorAnimation.length));
+            }
             if (swayingLayers == null) swayingLayers = GetComponentsInChildren<EnvironmentSwayLayer>(true);
             foreach (EnvironmentSwayLayer layer in swayingLayers)
                 if (layer != null && layer.isActiveAndEnabled) layer.Sample(seconds);
@@ -131,9 +136,10 @@ namespace PuzzleGame
             return Mathf.Repeat(Mathf.Sin(index * 127.1f + salt * 311.7f) * 43758.5453f, 1f);
         }
 
-        /// <summary>保存预览前释放网格副本并移除临时粒子</summary>
+        /// <summary>保存预览前恢复装饰首帧、释放网格副本并移除临时粒子。</summary>
         public void ClearPreview()
         {
+            if (decorAnimation != null) decorAnimation.SampleAnimation(gameObject, 0f);
             if (swayingLayers != null)
                 foreach (EnvironmentSwayLayer layer in swayingLayers)
                     if (layer != null) layer.ReleaseMesh();

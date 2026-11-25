@@ -64,7 +64,7 @@ namespace ET.Client
         }
 
         /// <summary>
-        /// 检查当前 Puzzle 以指定原点格坐标放置时的判定结果。
+        /// 检查拼图是否已解锁，以及在指定原点格坐标放置时能否匹配全部目标格。
         /// </summary>
         /// <param name="self">要检查的 Puzzle。</param>
         /// <param name="grid">目标 Grid。</param>
@@ -76,7 +76,7 @@ namespace ET.Client
         {
             matchedGridSlots = new List<Slot>();
             Slot originSlot = self.GetOriginSlot();
-            if (grid == null || originSlot == null || self.ChildrenCount() <= 0)
+            if (grid == null || originSlot == null || self.ChildrenCount() <= 0 || self.GetComponent<PuzzleRevealComponent>() != null)
             {
                 return PuzzlePlacementCheckResult.Invalid;
             }
@@ -169,7 +169,7 @@ namespace ET.Client
         }
 
         /// <summary>
-        /// 将一组已通过合法性校验的目标 Grid Slot 应用为当前 Puzzle 的放置结果。
+        /// 将已通过合法性校验的目标格应用为已解锁拼图的放置结果。
         /// </summary>
         /// <param name="self">要执行放置的 Puzzle。</param>
         /// <param name="grid">目标 Grid。</param>
@@ -178,7 +178,7 @@ namespace ET.Client
         /// <param name="matchedGridSlots">本次放置涉及的全部目标 Grid Slot。</param>
         public static void ApplyPlacement(this Puzzle self, Grid grid, int anchorX, int anchorY, List<Slot> matchedGridSlots)
         {
-            if (grid == null || matchedGridSlots == null || matchedGridSlots.Count == 0)
+            if (grid == null || matchedGridSlots == null || matchedGridSlots.Count == 0 || self.GetComponent<PuzzleRevealComponent>() != null)
             {
                 return;
             }

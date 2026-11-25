@@ -3,13 +3,13 @@ using DG.Tweening;
 namespace ET.Client
 {
     /// <summary>
-    /// 在通用点击事件中处理 Puzzle 旋转。
+    /// 处理拼图旋转和关卡场景中的拼图解锁点击。
     /// </summary>
     [Event(SceneType.Current)]
-    public class PointerClick_RotatePuzzle : AEvent<Scene, PointerClick>
+    public class PointerClick_InteractWithPuzzle : AEvent<Scene, PointerClick>
     {
         /// <summary>
-        /// 在关卡就绪且没有拖拽手势时尝试旋转静止拼图
+        /// 优先旋转命中的拼图，点击场景物件时要求按下和松开均命中同一解锁目标。
         /// </summary>
         /// <param name="scene">当前关卡场景</param>
         /// <param name="args">点击输入上下文</param>
@@ -28,11 +28,18 @@ namespace ET.Client
                 return;
             }
 
-            PuzzleInputResolveResult resolveResult = PuzzleInputResolver.ResolvePress(args.Context);
-            Puzzle puzzle = resolveResult.Puzzle;
-            if (puzzle != null)
+            PuzzleInputResolveResult press = PuzzleInputResolver.ResolvePress(args.Context);
+            if (press.Puzzle != null)
             {
-                this.TryRotatePuzzle(scene, puzzle);
+                this.TryRotatePuzzle(scene, press.Puzzle);
+            }
+            else if (press.Reveal != null && press.GridSlot == null && press.Reveal.GetParent<Puzzle>().GetParent<Grid>() == grid)
+            {
+                PuzzleInputResolveResult release = PuzzleInputResolver.Resolve(args.Context);
+                if (release.Reveal == press.Reveal && release.Puzzle == null && release.GridSlot == null)
+                {
+                    grid.GetComponent<LevelView>().ClickRevealTrigger(press.Reveal);
+                }
             }
 
             await ETTask.CompletedTask;
