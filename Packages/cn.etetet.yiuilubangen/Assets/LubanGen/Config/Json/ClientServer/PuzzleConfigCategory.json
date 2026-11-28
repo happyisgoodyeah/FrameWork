@@ -59,5 +59,241 @@
         1
       ]
     ]
+  },
+  {
+    "Id": 1004,
+    "Name": "水豚团坐",
+    "PrefabPath": "Puzzle/Puzzle1004",
+    "SlotOffset": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        -1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ]
+    ]
+  },
+  {
+    "Id": 1005,
+    "Name": "垂耳兔探头",
+    "PrefabPath": "Puzzle/Puzzle1005",
+    "SlotOffset": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        -1
+      ],
+      [
+        1,
+        0
+      ]
+    ]
+  },
+  {
+    "Id": 1006,
+    "Name": "暹罗猫伸懒腰",
+    "PrefabPath": "Puzzle/Puzzle1006",
+    "SlotOffset": [
+      [
+        0,
+        0
+      ],
+      [
+        -1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        -1,
+        -1
+      ]
+    ]
+  },
+  {
+    "Id": 1007,
+    "Name": "英短蜷睡",
+    "PrefabPath": "Puzzle/Puzzle1007",
+    "SlotOffset": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        -1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ]
+    ]
+  },
+  {
+    "Id": 1008,
+    "Name": "布偶猫摊爪",
+    "PrefabPath": "Puzzle/Puzzle1008",
+    "SlotOffset": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        -1
+      ],
+      [
+        -1,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ]
+  },
+  {
+    "Id": 1009,
+    "Name": "缅因猫回望",
+    "PrefabPath": "Puzzle/Puzzle1009",
+    "SlotOffset": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        -1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        -1,
+        -1
+      ]
+    ]
+  },
+  {
+    "Id": 1010,
+    "Name": "柯基趴趴",
+    "PrefabPath": "Puzzle/Puzzle1010",
+    "SlotOffset": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ]
+  },
+  {
+    "Id": 1011,
+    "Name": "腊肠犬贴地嗅",
+    "PrefabPath": "Puzzle/Puzzle1011",
+    "SlotOffset": [
+      [
+        0,
+        0
+      ],
+      [
+        -1,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ]
+  },
+  {
+    "Id": 1012,
+    "Name": "柴犬回头坐",
+    "PrefabPath": "Puzzle/Puzzle1012",
+    "SlotOffset": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        -1
+      ],
+      [
+        -1,
+        0
+      ]
+    ]
+  },
+  {
+    "Id": 1013,
+    "Name": "贵宾犬作揖",
+    "PrefabPath": "Puzzle/Puzzle1013",
+    "SlotOffset": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        -1
+      ]
+    ]
+  },
+  {
+    "Id": 1014,
+    "Name": "金丝熊捧爪",
+    "PrefabPath": "Puzzle/Puzzle1014",
+    "SlotOffset": [
+      [
+        0,
+        0
+      ]
+    ]
+  },
+  {
+    "Id": 1015,
+    "Name": "雪貂扭身",
+    "PrefabPath": "Puzzle/Puzzle1015",
+    "SlotOffset": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        -1
+      ],
+      [
+        -1,
+        0
+      ],
+      [
+        1,
+        -1
+      ]
+    ]
   }
 ]

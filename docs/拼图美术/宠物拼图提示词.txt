@@ -1,0 +1,63 @@
+宠物拼图美术提示词
+
+这批拼图使用内置 ImageGen 制作。原图参考位于 Packages/cn.etetet.gameplay/Resources/Sprite/Puzzle。四帧原稿按左上、右上、左下、右下排列，分别对应待机、眨眼、刚拎起和拎起后安定。工程中的 00.png、01.png、PickedUp/00.png、PickedUp/01.png 共用画布尺寸和枢轴。英短以闭眼为待机首帧，偶尔睁眼偷看，拎起时醒来。
+
+常规体型
+
+将下方共用提示与对应宠物的两行描述拼接，使用指定原图作笔触和配色参考。启用透明背景。
+
+Use case: style-transfer. Transform the supplied single old Unity pet sprite into a four-frame animation asset for another puzzle pet in the same game's cast. Input image is the art-direction reference, preserve its particular handmade simplicity and stroke scale while redrawing the subject and pose. Output ONE square transparent PNG 2 by 2 sprite sheet for ONE character, four separated near-identical drawings facing the same direction and in exactly the same pose, one centered in each equal quadrant. Exactly 2 columns and 2 rows, no grid lines. Size the character to use 82–88% of the available width OR height of each quadrant, same scale and position in every quadrant, good clear transparent gutters, no touching. Four subtle animation keyframes: top left normal pose, top right a relaxed blink or breath, bottom left a surprised lifted expression, bottom right the same lifted pose settling, subtle ear, tail or paw motion. Keep silhouettes and poses anatomically consistent; each quadrants' footprint stays the same. Use the same imperfect hand-drawn game sprite style as supplied, very few wobbly near-black dry felt-brush strokes with big irregularities in width, breaks and ink skips; no fine hatching, hairline pencilling, fur texture or vector contours. Opaque flat low-saturation pastel blocks, warm cream, a couple of blunt white dry-brush highlights, tiny dusty coral cheek dashes, scarcely any shadow, if needed one muted grey-purple mark. Ink eyes like vertical seeds or closed arcs, ample breathing room in unadorned color areas, very simple adorable expression and mild asymmetry. A quick naïve scribble in a basic painting program, not polished sticker merchandise. Minimal small scale detail. Keep background actually transparent RGBA throughout and in all negative spaces, no surrounding white keyline, background, paper, ground, labels, captions, letters, diagram or floating marks. The imaginary grid describes the animal's silhouette only; never draw cells, lines, cubes or a tile behind it.
+
+1004　水豚团坐　2×2 方形　参考 dog-l/00.png
+Character and footprint for all four frames: square-ish compact 2 by 2 filled footprint. A peaceful young capybara sitting on its haunches in three-quarter profile facing left, high blunt squared muzzle, two very small rounded ears on the crown, two little nostrils, barrel-shaped cinnamon-biscuit body and tucked paws. Keep snout, back and rump comfortably within the full compact square. Clearly a capybara, no tail, no head accessories.
+Picked-up acting: slightly wiggle the ears and open its blunt little mouth.
+
+1005　垂耳兔探头　三格 L 形　参考 rabite/00.png
+Character and footprint for all four frames: a visibly L-shaped triomino, an imaginary 2 by 2 box with the UPPER RIGHT quadrant completely EMPTY. A little cream-and-dusty-apricot Holland lop rabbit in left three-quarter view sitting up to listen. Tall head and pendulous lop ears are in upper left, chest lower left, resting broad haunches and its little cotton tail stretch low to the right into the lower right quadrant. Clean, deep, clearly empty square-shaped notch above the rump to the right. Disarmingly simple face.
+Picked-up acting: gently swing the hanging ear and give the surprised mouth a tiny O.
+
+1007　英短蜷睡　2×2 方形　参考 cat/00.png
+Character and footprint for all four frames: square compact 2 by 2 solid footprint. A round British Shorthair blue cat curled into a fat cinnamon-roll nap with its thick short tail around one cheek. Three-quarter view looking gently down to the right; very small widely set triangular ears and very round cheeks. One large slate lavender-blue flat patch across most of the body, cream muzzle, two dry white highlight strokes. In first frame eyes are soft open slim ovals, in second closed.
+Picked-up acting: peek out, tilt one ear and uncoil the very tip of its tail.
+
+1010　柯基趴趴　横向双格　参考 dog-l/00.png
+Character and footprint for all four frames: a horizontal 2 by 1 solid domino footprint. Side view of a short-legged Pembroke Welsh corgi splooting, chin forward to the right, fox ears, bottom to the left with tiny back paws sticking out, very short dockless-looking bobtail. Biscuit orange and creamy white bib and sock feet, cute simple nose. The whole subject low, wide and warm.
+Picked-up acting: wiggle its tiny back paws and lift a fox ear.
+
+1011　腊肠犬贴地嗅　三格长条　参考 dog-l/00.png
+Character and footprint for all four frames: a very long and low 3-wide by 1-high horizontal bar piece. One smooth chocolate-and-tan miniature dachshund sniffing, nose down toward the left, long floppy dark ear, long sausage belly and short paws stretching across the middle, fine natural tail at the right kept low. One large cocoa patch and a tan muzzle, tiny beige eyebrow dash, no spots. Its low silhouette stretches horizontally.
+Picked-up acting: perk its long ear slightly and twitch its little tail, nose up a touch.
+
+1012　柴犬回头坐　三格反向折角　参考 dog-l/00.png
+Character and footprint for all four frames: A reverse L triomino in an imaginary 2 by 2 box: upper RIGHT, lower RIGHT and lower LEFT cells occupied, upper LEFT absolutely empty. One red Shiba Inu sitting side-on with ears and head high on the RIGHT turning to look back, its trunk descends the right side, low haunches and a bold tightly curled tail extend to the lower LEFT. No ears, tail or glows rising into the top-left notch. Cinnamon coat, cream urajiro muzzle, two eyebrows and cream belly.
+Picked-up acting: unfurl the very tip of its low tail and tip its head.
+
+1013　贵宾犬作揖　纵向双格　参考 dog-l/00.png
+Character and footprint for all four frames: A vertical 1-wide by 2-high domino. A small apricot toy poodle standing upright on its two hind feet in a begging pose, both front paws tucked under its chin, very compact silhouette. Front view, just three rounded scallops for the curly crown, a pair of drooping rounded ears, small top head, slimmer body beneath, feet underneath. Dusty apricot, cream muzzle and chest. No detailed curls.
+Picked-up acting: lift both forepaws a little and tilt the fluffy ear.
+
+1014　金丝熊捧爪　单格　参考 rabite/00.png
+Character and footprint for all four frames: One tiny Syrian golden hamster filling a SINGLE square puzzle cell. Compact round body, little circular ears, stuffed cheeks, eyes like black rice grains, tiny front paws cupped against the belly. Almost front view but one chubby cheek higher, oat cream with just one muted honey-beige back patch. No tail, no seed or objects.
+Picked-up acting: puff both cheeks and bring one paw against its chin.
+
+1015　雪貂扭身　四格 S 形　参考 cat/00.png
+Character and footprint for all four frames: S-shaped stair tetromino in a 3 wide by 2 high rectangle: UPPER MIDDLE and UPPER RIGHT occupied, LOWER LEFT and LOWER MIDDLE occupied; UPPER LEFT and LOWER RIGHT empty with real deep square notches. One pale sable domestic ferret playing in a bend. Horizontal dark-masked head at top RIGHT, tiny round ears, shoulders in top MIDDLE; hips bend down to lower MIDDLE; a thick tapering dark tail extends across the bottom into lower LEFT. Anatomic curve joins at the middle. Cream with a single muted cocoa mask and tail.
+Picked-up acting: lift its nosetip and flick the end of the tail.
+
+竖尾的长 L 形与 T 形
+
+参考图一为三列两行的占格图。上排占左格、下排占满三格的是暹罗猫。上排占中格、下排占满三格的是布偶猫。占格填灰绿，空格填浅灰。参考图二使用 cat/00.png。两种造型都把身体压低，以竖起的尾巴形成突出的一格。将 {POSE} 替换成相应姿势。
+
+Draw a transparent 2 by 2 sprite sheet for ONE animal, four separated full bodies, same side view, flat on the belly, exactly the same silhouette each time. In EACH quadrant reproduce the proportions of the green footprint from picture 1. Pale grey regions in the guide must end up empty ALPHA. Never draw a square, template, patch of green, frame or caption. Picture 2 is solely the established linework/brush style for the little animal. {POSE} Keep the whole animal big in each frame and safely inside, with transparent gutters. TL alert, TR blink, BL surprised mouth/tail twitch, BR relax while held. Breed and geometry more important than embellishment. Tangibly irregular near-black broken blunt brush outlines, coarse imperfect strokes with varying thickness, the small vertical grain eyes, coral blush dashes, coarse white ink skips, a couple of opaque low-saturation blush/cream/grey-purple flat colors. Crude fast hand-painted game doodle, minimal lines, no hair texture, shadow, white sticker line or floor. Genuinely transparent RGBA.
+
+1006　暹罗猫伸懒腰
+An exaggerated LOW full-body stretch of a sleek seal-point Siamese. Its entire long cream cat body lies flat across the BOTTOM band, the chocolate-masked face in the FAR RIGHT third, chin almost touching its long outstretched forepaws on the right. The pointy ears on the head at right stay very low. The hindquarters are at the far LEFT, and an absurdly tall proud cocoa-tipped tail stands up like a feather duster on the far LEFT only. The thick dark tail is the ONLY part rising above the bottom band, wide enough to fill the upper LEFT tile. Horizontal bottom body is almost THREE HEADS long, not a sitting cat. The silhouette of the raised tail + whole of the prone body is the letter L. Keep both cells above the middle and the head completely EMPTY.
+
+1008　布偶猫摊爪
+A floppy blue-bicolor Ragdoll sprawled very LOW across the entire BOTTOM band. Its little masked face is at the far LEFT, chin resting on its long forepaws reaching further left; elongated cream belly stretches to the right, fluffy hind feet sploot at far RIGHT. In the exact CENTER a single huge fluffy pale-blue tipped plume tail sticks VERTICALLY UP above the body, giving a very clear upside-down T shaped silhouette. The T's vertical post is entirely tail, not head or neck! It is the only feature that rises up, the top-left and top-right must be completely EMPTY. Lying sideways, rare adorable tail-up pose, blue-grey mask with unmistakable white inverted V blaze, tiny blue-dot eyes. Very wide reclining body with no sitting up.
+
+阶梯形缅因猫
+
+1009　缅因猫回望。参考图一为三列两行的 Z 形，上排占左、中两格，下排占中、右两格。参考图二使用 cat/00.png。参考图三使用雪貂的四帧姿势，取反方向的折身动态。下段后接上面的共用提示。
+
+An exact negative-space correction for a 2-by-2 four-frame Unity pet sprite sheet. Reference 1 is the binding silhouette mask for EACH animal: the green is the only area where it may be drawn, light grey is compulsory TRANSPARENT empty space. The guide is repeated invisibly in each of the four frames. Never draw the guide itself, colored areas, blocks or grid. Reference 2 gives only the actual ink/paint style. A long, fluffy silver-tabby Maine Coon playing on its back while turning to look over one shoulder. A physically convincing but very playful diagonal body. The large round head with lynx ears is positioned at FAR UPPER LEFT and is held UP. The torso extends from its face horizontally across upper middle; rolls DOWN in the CENTER. Its long plume tail and hindquarters run horizontally along the bottom from center to FAR LOWER RIGHT. The whole region DIRECTLY UNDER the head must be completely empty at the lower LEFT. Do not put paws below the head; tuck forepaws into the chest extending horizontally right. Whole area ABOVE the right tail also fully transparent. Zigzag silhouette like a left-right flipped ferret in reference 3. Restrained silver tabby patches and white bib. Four frames same proportions and positioning.
