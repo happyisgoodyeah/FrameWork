@@ -32,6 +32,37 @@ namespace YIUIFramework
 
         public string EventName => this.m_EventName;
 
+        [SerializeField, HideInInspector]
+        private string m_SerializedEventName;
+
+        [SerializeField, HideInInspector]
+        private bool m_HasSerializedEventName;
+
+        /// <summary>
+        /// 使用 Unity 序列化保存事件名，保留嵌套预制体中的选择
+        /// </summary>
+        protected override void OnBeforeSerialize()
+        {
+            if (!m_HasSerializedEventName && string.IsNullOrEmpty(m_EventName))
+            {
+                return;
+            }
+
+            m_SerializedEventName = m_EventName;
+            m_HasSerializedEventName = true;
+        }
+
+        /// <summary>
+        /// 从 Unity 序列化恢复事件名，兼容只有 Odin 数据的旧资源
+        /// </summary>
+        protected override void OnAfterDeserialize()
+        {
+            if (m_HasSerializedEventName)
+            {
+                m_EventName = m_SerializedEventName;
+            }
+        }
+
         /// <summary>
         /// 当前的UI事件
         /// </summary>

@@ -66,12 +66,12 @@ namespace ET.Client
         }
 
         /// <summary>
-        /// 获取 Puzzle 主图渲染器，优先使用 VisualRoot 下的组件
+        /// 获取拼图预制体或实例的主图渲染器，优先使用 VisualRoot 下的组件
         /// </summary>
         /// <param name="root">Puzzle 根节点</param>
         /// <param name="visualRoot">Puzzle 视觉根节点</param>
         /// <returns>主图渲染器</returns>
-        private static SpriteRenderer ResolveSpriteRenderer(Transform root, Transform visualRoot)
+        internal static SpriteRenderer ResolveSpriteRenderer(Transform root, Transform visualRoot)
         {
             if (visualRoot != null)
             {

@@ -15,8 +15,8 @@ namespace ET.Client
         SelectLevelView = 2,
         GameView = 3,
         SettingsView = 4,
+        ArchiveView = 5,
     }
-
     /// <summary>
     /// 由YIUI工具自动创建 请勿修改
     /// </summary>
@@ -33,5 +33,6 @@ namespace ET.Client
         public YIUIWindowComponent UIWindow => u_UIWindow;
         public EntityRef<YIUIPanelComponent> u_UIPanel;
         public YIUIPanelComponent UIPanel => u_UIPanel;
+
     }
 }

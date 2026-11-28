@@ -65,13 +65,14 @@ namespace ET.Client
         }
 
         /// <summary>
-        /// 打开图鉴面板
+        /// 在当前主面板内打开图鉴视图
         /// </summary>
         /// <param name="self">主菜单视图</param>
         [YIUIInvoke(Main1ViewComponent.OnEventArchiveEnterInvoke)]
         private static async ETTask OnEventArchiveEnterInvoke(this Main1ViewComponent self)
         {
-            await self.YIUIRoot().OpenPanelAsync<ArchivePanelComponent>();
+            GameMainPanelPanelComponent panel = self.UIBase.GetParent<GameMainPanelPanelComponent>();
+            await panel.UIPanel.OpenViewAsync<ArchiveViewComponent>();
         }
 
         /// <summary>
